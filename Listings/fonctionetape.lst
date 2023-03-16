@@ -220,25 +220,44 @@ ARM Macro Assembler    Page 4
    75 00000014                 ENDP
    76 00000014         
    77 00000014         ;Capteur PROC
-   78 00000014         
-   79 00000014         ;   ENDP
-   80 00000014         
-   81 00000014         
-   82 00000014         
-   83 00000014         
-   84 00000014         ;*******************************************************
+   78 00000014         ;   LDR  R4 ,= 0X40010808 ; Charge l'adresse 0X40010808 
+                       dans le registre R5.
+   79 00000014         ;   LDRH R5,[R4]   ; Stock la valeur de l'adresse de R4 
+                       dans R5
+   80 00000014         ;   AND R5,R5, #0x0100  ; Vérifier si le bit 8 de l'adre
+                       sse chargée dans R5 est à 1 ou à 0.
+   81 00000014         ;TST R4, #0x0100  ; Vérifie si le bit 8 de R5 est à 1 ou
+                        à 0
+   82 00000014         ;   CMP R5, #0    ; Compare R5 à zéro
+   83 00000014         ;   BNE Eteint    ; Si R5 est égal à zéro, saute à l'éti
+                       quette Allume_LED (BEQ n'affecte pas LR, il fait un saut
+                       )
+   84 00000014         ;   BL Allume_LED   ; Si R5 est différent de zéro, saute
+                        à l'étiquette Eteint_LED. Avec R5 à 0x80 pour 8eme bit 
+                       à 1 (BEQ)
+   85 00000014         
+   86 00000014         ;Eteint
+   87 00000014         ;   BL Eteint_LED
+   88 00000014         ;   BL Capteur
+   89 00000014         
+   90 00000014         ;   ENDP
+   91 00000014         
+   92 00000014         
+   93 00000014         
+   94 00000014         
+   95 00000014         ;*******************************************************
                        *******************
-   85 00000014                 END
+   96 00000014                 END
               40010C10 
               40010C14 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\fonctionetape.d -o.\objects\fonctionetape.o -I.\RTE\Devi
-ce\STM32F107VC -I.\RTE\_R_el -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CM
-SIS\Core\Include -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Devic
-e\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefi
-ne="__UVISION_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM32F1
-0X_CL SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_CL SETA 1" --li
-st=.\listings\fonctionetape.lst FonctionEtape.asm
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\fonctionetape.d -o.\objects\fonctionetape.o -I.\RTE\Device\STM32F1
+03RB -I.\RTE\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\C
+MSIS\Core\Include -IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2
+.4.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1"
+ --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefin
+e="STM32F10X_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SE
+TA 1" --list=.\listings\fonctionetape.lst FonctionEtape.asm
 
 
 
