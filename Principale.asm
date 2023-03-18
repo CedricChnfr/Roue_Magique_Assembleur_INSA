@@ -74,16 +74,16 @@ front_montant_allume
 		CMP R9, #0x0A				; Vérifier si le compteur est à 10
 		BEQ Allume					; Si oui, alors passer à l'étape d'allumage permanent de la LED
 		
+		BL Allume_LED				; Sinon, allume la LED
 		MOV R10, #1					; Mettre à jour OldEtat
 		
 attente_allume
-		BL Allume_LED				; Sinon, allume la LED
 		BL Old_Etat_allume			; Récupérer l'état précédent du capteur
 allume
 		CMP R10, #0					; Compare le registre R10 à 0
 		BEQ front_montant_eteint	; Si oui retourne à l'étiquette front_montant_eteint
 		
-		B attente_allume					; Sinon continuer l'étape d'allumage
+		B attente_allume			; Sinon continuer l'étape d'allumage
 
 front_montant_eteint
 		
@@ -91,10 +91,10 @@ front_montant_eteint
 		CMP R9, #0x0A				; Vérifier si le compteur est à 10
 		BEQ Allume					; Si oui, alors passer à l'étape d'allumage permanent de la LED
 
+		BL Eteint_LED				; Sinon, éteindre la LED
 		MOV R10, #1					; Mettre à jour OldEtat
 		
 attente_eteint	
-		BL Eteint_LED				; Sinon, éteindre la LED
 		BL Old_Etat_eteint			; Récupérer l'état précédent du capteur
 eteint
 		CMP R10, #0					; Compare le registre R10 à 0
@@ -108,28 +108,28 @@ Old_Etat_allume
 		LDRH R8, [R4]				; Charge la valeur stockée à l'adresse R4 dans le registre R8
 		AND R8,R8, #0x0100			; Effectue un ET binaire entre R8 et 0x0100 et stocke le résultat dans R8
 		CMP R8, #0					; Compare la valeur stockée dans R8 à 0
-		BEQ Second_check			; Saute à l'étiquette allume2
+		BEQ Second_check_allume		; Saute à l'étiquette allume2
 		B Old_Etat_allume			; Sinon, retourne à l'étiquette Old_Etat_allume
-Second_check
+Second_check_allume
 		LDRH R8, [R4]				; Charge la valeur stockée à l'adresse R4 dans le registre R8
 		AND R8,R8, #0x0100			; Effectue un ET binaire entre R8 et 0x0100 et stocke le résultat dans R8
 		CMP R8, #0					; Compare la valeur stockée dans R8 à 0
 		BNE allume					; Saute à l'étiquette allume2
-		B Second_check				; Sinon, retourne à l'étiquette Old_Etat_allume
+		B Second_check_allume		; Sinon, retourne à l'étiquette Old_Etat_allume
 		
 Old_Etat_eteint
 		MOV R10, #0					; Initialisation à 0 du registre OldEtat
 		LDRH R8, [R4]				; Charge la valeur stockée à l'adresse R4 dans le registre R8
 		AND R8,R8, #0x0100			; Effectue un ET binaire entre R8 et 0x0100 et stocke le résultat dans R8
 		CMP R8, #0					; Compare la valeur stockée dans R8 à 0
-		BEQ Second_check2					; Si la comparaison n'est pas égale, saute à l'étiquette eteint2
+		BEQ Second_check_eteint					; Si la comparaison n'est pas égale, saute à l'étiquette eteint2
 		B Old_Etat_eteint			; Sinon, retourne à l'étiquette Old_Etat_eteint
-Second_check2
+Second_check_eteint
 		LDRH R8, [R4]				; Charge la valeur stockée à l'adresse R4 dans le registre R8
 		AND R8,R8, #0x0100			; Effectue un ET binaire entre R8 et 0x0100 et stocke le résultat dans R8
 		CMP R8, #0					; Compare la valeur stockée dans R8 à 0
 		BNE eteint					; Saute à l'étiquette allume2
-		B Second_check2				; Sinon, retourne à l'étiquette Old_Etat_allume
+		B Second_check_eteint		; Sinon, retourne à l'étiquette Old_Etat_allume
 
 
 
