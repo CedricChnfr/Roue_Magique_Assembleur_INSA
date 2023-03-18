@@ -50,35 +50,9 @@ main  	PROC
 ;*******************************************************************************
 
 
-;OldEtat = 0
-;Cpt = 0
-;N=10
-;
-;Tant que 1
-;
-;FrontMontant:
-;	Si OldEtat == 0 et Capteur == 1
-;		Led = !Led
-;		Cpt = Cpt + 1 
-;	Si Compteur >= N
-;		Led = 1
-;	
-;	OldEtat = Capteur
-;
-;Fin tant que
-;
-;
-
-
-		
-		MOV R0,#0
-		BL Init_Cible;				;Initialisation de la cible
-			
-
-
-;OldEtat		DCW		0				;Variable pour stocker l'?tat pr?c?dent du capteur
-;Cpt			DCW		0				;Compteur de fronts montants d?tect?s
-;N			EQU		10				;Nombre de fronts montants ? détecter avant de rester allumé
+	
+	MOV R0,#0
+	BL Init_Cible;				;Initialisation de la cible
 
 boucle
 
@@ -88,10 +62,10 @@ boucle
 		
 		MOV R9, #0					; Registre du compteur des 10 passages
 		
-		;MOV R10, #0					; Registre de OlEtat
+		MOV R10, #0					; Registre OlEtat
 		
-		AND R8,R8, #0x0100			; Vérifier si le bit 8 de l'adresse chargée dans R5 est ? 1 ou ? 0.
-		CMP R8, #0					; Compare R8 ? zéro OU CMP R8, #(0x01 << 8)
+		AND R8,R8, #0x0100			; Vérifier si le bit 8 de l'adresse chargée dans R5 est à 1 ou à 0.
+		CMP R8, #0					; Compare R8 à zéro OU CMP R8, #(0x01 << 8)
 		BNE front_montant_allume	; Si zero alors j'allume			
 		B boucle
 			
@@ -101,11 +75,15 @@ front_montant_allume
 		CMP R9, #0x0A
 		BEQ Allume
 		
-allume
 		BL Allume_LED
+		MOV R10, #1
 		
-		CMP R8, #0
-		BNE front_montant_eteint
+allume
+		
+		BL Old_Etat
+allume2
+		CMP R10, #0
+		BEQ front_montant_eteint
 		
 		B allume
 
@@ -115,21 +93,40 @@ front_montant_eteint
 		CMP R9, #0x0A
 		BEQ Allume
 		
+		BL Eteint_LED
+		MOV R10, #1
 		
 eteint	
-		BL Eteint_LED
-		LDRH R8, [R4]				; Stock la valeur de l'adresse de R4 dans R5
-		AND R8,R8, #0x0100
-		CMP R8, #0
-		BNE front_montant_allume
+		BL Old_Etat2
+		MOV R10, #1
+eteint2
+		
+		CMP R10, #0
+		BEQ front_montant_allume
 		
 		B eteint
 		
+		
+Old_Etat
+		MOV R10, #0
+		LDRH R8, [R4]				; Stock la valeur de l'adresse de R4 dans R5
+		AND R8,R8, #0x0100
+		CMP R8, #0
+		BEQ allume2
+		B Old_Etat
+		
+Old_Etat2
+		MOV R10, #0
+		LDRH R8, [R4]				; Stock la valeur de l'adresse de R4 dans R5
+		AND R8,R8, #0x0100
+		CMP R8, #0
+		BNE eteint2
+		B Old_Etat2
+
 boucle2
 Allume	
 		BL Allume_LED
 		B boucle2
-		
 		
 	
 		
