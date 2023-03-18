@@ -168,167 +168,220 @@ ARM Macro Assembler    Page 3
                        ************************
    51 00000000         
    52 00000000         
-   53 00000000         ;OldEtat = 0
-   54 00000000         ;Cpt = 0
-   55 00000000         ;N=10
-   56 00000000         ;
-   57 00000000         ;Tant que 1
-   58 00000000         ;
-   59 00000000         ;FrontMontant:
-   60 00000000         ; Si OldEtat == 0 et Capteur == 1
-   61 00000000         ;  Led = !Led
-   62 00000000         ;  Cpt = Cpt + 1 
-   63 00000000         ; Si Compteur >= N
-   64 00000000         ;  Led = 1
-   65 00000000         ; 
-   66 00000000         ; OldEtat = Capteur
-   67 00000000         ;
-   68 00000000         ;Fin tant que
-   69 00000000         ;
-   70 00000000         ;
-   71 00000000         
-   72 00000000 F04F 0000       MOV              R0,#0
-   73 00000004 F7FF FFFE       BL               Init_Cible  ;    ;Initialisatio
-                                                            n de la cible
-   74 00000008         
-   75 00000008         
-   76 00000008         
+   53 00000000         
+   54 00000000 F04F 0000       MOV              R0,#0
+   55 00000004 F7FF FFFE       BL               Init_Cible  ;     ;Initialisati
+                                                            on de la cible
+   56 00000008         
+   57 00000008         boucle
+   58 00000008         
+   59 00000008         ;Etat du capteur
+   60 00000008 4C29            LDR              R4 ,= 0X40010808 ; Chargement d
+                                                            e l'adresse dans le
+                                                             registre
+   61 0000000A F8B4 8000       LDRH             R8, [R4]    ; Stock la valeur d
+                                                            e l'adresse de R4 d
+                                                            ans R8
+   62 0000000E         
+   63 0000000E F04F 0900       MOV              R9, #0      ; Registre du compt
+                                                            eur des 10 passages
+                                                             initialisé à 0
+   64 00000012 F04F 0A00       MOV              R10, #0     ; Registre OlEtat
+   65 00000016         
+   66 00000016 F408 7880       AND              R8,R8, #0x0100 ; Vérifier si le
+                                                             bit 8 de l'adresse
+                                                             chargée dans R5 es
+                                                            t à 1 ou à 0.
+   67 0000001A F1B8 0F00       CMP              R8, #0      ; Compare R8 à zéro
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-   77 00000008         ;OldEtat  DCW  0    ;Variable pour stocker l'?tat pr?c?d
-                       ent du capteur
-   78 00000008         ;Cpt   DCW  0    ;Compteur de fronts montants d?tect?s
-   79 00000008         ;N   EQU  10    ;Nombre de fronts montants ? détecter av
-                       ant de rester allumé
-   80 00000008         
-   81 00000008         boucle
-   82 00000008         
-   83 00000008         ;Etat du capteur
-   84 00000008 4C22            LDR              R4 ,= 0X40010808 ; Chargement d
-                                                            e l'adresse dans le
-                                                             registre
-   85 0000000A F8B4 8000       LDRH             R8, [R4]    ; Stock la valeur d
-                                                            e l'adresse de R4 d
-                                                            ans R8
-   86 0000000E         
-   87 0000000E F04F 0900       MOV              R9, #0      ; Registre du compt
-                                                            eur des 10 passages
-                                                            
-   88 00000012         
-   89 00000012 F04F 0A00       MOV              R10, #0     ; Registre OlEtat
-   90 00000016         
-   91 00000016 F408 7880       AND              R8,R8, #0x0100 ; Vérifier si le
-                                                             bit 8 de l'adresse
-                                                             chargée dans R5 es
-                                                            t ? 1 ou ? 0.
-   92 0000001A F1B8 0F00       CMP              R8, #0      ; Compare R8 ? zéro
                                                              OU CMP R8, #(0x01 
                                                             << 8)
-   93 0000001E D100            BNE              front_montant_allume ; Si zero 
+   68 0000001E D100            BNE              front_montant_allume ; Si zero 
                                                             alors j'allume   
-   94 00000020 E7F2            B                boucle
-   95 00000022         
-   96 00000022         front_montant_allume
-   97 00000022         
-   98 00000022 F109 0901       ADD              R9, R9, #1
-   99 00000026 F1B9 0F0A       CMP              R9, #0x0A
-  100 0000002A D02E            BEQ              Allume
-  101 0000002C         
-  102 0000002C F7FF FFFE       BL               Allume_LED
-  103 00000030 F04F 0A01       MOV              R10, #1
-  104 00000034         
-  105 00000034         allume
-  106 00000034         
-  107 00000034 F000 F815       BL               Old_Etat
-  108 00000038         allume2
-  109 00000038 F1BA 0F00       CMP              R10, #0
-  110 0000003C D000            BEQ              front_montant_eteint
-  111 0000003E         
-  112 0000003E E7F9            B                allume
-  113 00000040         
-  114 00000040         front_montant_eteint
-  115 00000040         
-  116 00000040 F109 0901       ADD              R9, R9, #1
-  117 00000044 F1B9 0F0A       CMP              R9, #0x0A
-  118 00000048 D01F            BEQ              Allume
-  119 0000004A         
-  120 0000004A F7FF FFFE       BL               Eteint_LED
-  121 0000004E F04F 0A01       MOV              R10, #1
+   69 00000020 E7F2            B                boucle
+   70 00000022         
+   71 00000022         front_montant_allume
+   72 00000022         
+   73 00000022 F109 0901       ADD              R9, R9, #1  ; Incrémentation du
+                                                             compteur des 10 pa
+                                                            ssages
+   74 00000026 F1B9 0F0A       CMP              R9, #0x0A   ; Vérifier si le co
+                                                            mpteur est à 10
+   75 0000002A D03C            BEQ              Allume      ; Si oui, alors pas
+                                                            ser à l'étape d'all
+                                                            umage permanent de 
+                                                            la LED
+   76 0000002C         
+   77 0000002C F04F 0A01       MOV              R10, #1     ; Mettre à jour Old
+                                                            Etat
+   78 00000030         
+   79 00000030         attente_allume
+   80 00000030 F7FF FFFE       BL               Allume_LED  ; Sinon, allume la 
+                                                            LED
+   81 00000034 F000 F813       BL               Old_Etat_allume ; Récupérer l'é
+                                                            tat précédent du ca
+                                                            pteur
+   82 00000038         allume
+   83 00000038 F1BA 0F00       CMP              R10, #0     ; Compare le regist
+                                                            re R10 à 0
+   84 0000003C D000            BEQ              front_montant_eteint ; Si oui r
+                                                            etourne à l'étiquet
+                                                            te front_montant_et
+                                                            eint
+   85 0000003E         
+   86 0000003E E7F7            B                attente_allume ; Sinon continue
+                                                            r l'étape d'allumag
+                                                            e
+   87 00000040         
+   88 00000040         front_montant_eteint
+   89 00000040         
+   90 00000040 F109 0901       ADD              R9, R9, #1  ; Incrémentation du
+                                                             compteur des 10 pa
+                                                            ssages
+   91 00000044 F1B9 0F0A       CMP              R9, #0x0A   ; Vérifier si le co
+                                                            mpteur est à 10
+   92 00000048 D02D            BEQ              Allume      ; Si oui, alors pas
+                                                            ser à l'étape d'all
+                                                            umage permanent de 
+                                                            la LED
+   93 0000004A         
+   94 0000004A F04F 0A01       MOV              R10, #1     ; Mettre à jour Old
+                                                            Etat
+   95 0000004E         
+   96 0000004E         attente_eteint
+   97 0000004E F7FF FFFE       BL               Eteint_LED  ; Sinon, éteindre l
+                                                            a LED
+   98 00000052 F000 F816       BL               Old_Etat_eteint ; Récupérer l'é
+                                                            tat précédent du ca
 
 
 
 ARM Macro Assembler    Page 5 
 
 
-  122 00000052         
-  123 00000052         eteint
-  124 00000052 F000 F810       BL               Old_Etat2
-  125 00000056 F04F 0A01       MOV              R10, #1
-  126 0000005A         eteint2
-  127 0000005A         
-  128 0000005A F1BA 0F00       CMP              R10, #0
-  129 0000005E D0E0            BEQ              front_montant_allume
-  130 00000060         
-  131 00000060 E7F7            B                eteint
-  132 00000062         
-  133 00000062         
-  134 00000062         Old_Etat
-  135 00000062 F04F 0A00       MOV              R10, #0
-  136 00000066 F8B4 8000       LDRH             R8, [R4]    ; Stock la valeur d
-                                                            e l'adresse de R4 d
-                                                            ans R5
-  137 0000006A F408 7880       AND              R8,R8, #0x0100
-  138 0000006E F1B8 0F00       CMP              R8, #0
-  139 00000072 D0E1            BEQ              allume2
-  140 00000074 E7F5            B                Old_Etat
-  141 00000076         
-  142 00000076         Old_Etat2
-  143 00000076 F04F 0A00       MOV              R10, #0
-  144 0000007A F8B4 8000       LDRH             R8, [R4]    ; Stock la valeur d
-                                                            e l'adresse de R4 d
-                                                            ans R5
-  145 0000007E F408 7880       AND              R8,R8, #0x0100
-  146 00000082 F1B8 0F00       CMP              R8, #0
-  147 00000086 D1E8            BNE              eteint2
-  148 00000088 E7F5            B                Old_Etat2
-  149 0000008A         
-  150 0000008A         boucle2
-  151 0000008A         Allume
-  152 0000008A F7FF FFFE       BL               Allume_LED
-  153 0000008E E7FC            B                boucle2
-  154 00000090         
-  155 00000090         
-  156 00000090         
-  157 00000090         
-  158 00000090         
-  159 00000090         ;check
-  160 00000090         ;  LDR R6, =OldEtat
-  161 00000090         ;  LDRH R7,[R6]  
-  162 00000090         ;  MOV R7,#0x01
-  163 00000090         ;  AND R7,R7, #0x01
-  164 00000090         ;  CMP R6, #0
-  165 00000090         ;  BNE exstate1
-  166 00000090         
-  167 00000090 E7FE            B                .           ; boucle inifinie t
-                                                            erminale...
-  168 00000092         
-  169 00000092                 ENDP
-  170 00000092         
-  171 00000092                 END
-              00 00 40010808 
-Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
-nd=.\objects\principale.d -o.\objects\principale.o -I.\RTE\Device\STM32F103RB -
-I.\RTE\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\C
+                                                            pteur
+   99 00000056         eteint
+  100 00000056 F1BA 0F00       CMP              R10, #0     ; Compare le regist
+                                                            re R10 à 0
+  101 0000005A D0E2            BEQ              front_montant_allume ; Si oui r
+                                                            etourne à l'étiquet
+                                                            te front_montant_al
+                                                            lume
+  102 0000005C         
+  103 0000005C E7F7            B                attente_eteint
+  104 0000005E         
+  105 0000005E         
+  106 0000005E         Old_Etat_allume
+  107 0000005E F04F 0A00       MOV              R10, #0     ; Initialisation à 
+                                                            0 du registre OldEt
+                                                            at
+  108 00000062 F8B4 8000       LDRH             R8, [R4]    ; Charge la valeur 
+                                                            stockée à l'adresse
+                                                             R4 dans le registr
+                                                            e R8
+  109 00000066 F408 7880       AND              R8,R8, #0x0100 ; Effectue un ET
+                                                             binaire entre R8 e
+                                                            t 0x0100 et stocke 
+                                                            le résultat dans R8
+                                                            
+  110 0000006A F1B8 0F00       CMP              R8, #0      ; Compare la valeur
+                                                             stockée dans R8 à 
+                                                            0
+  111 0000006E D000            BEQ              Second_check ; Saute à l'étique
+                                                            tte allume2
+  112 00000070 E7F5            B                Old_Etat_allume ; Sinon, retour
+                                                            ne à l'étiquette Ol
+                                                            d_Etat_allume
+  113 00000072         Second_check
+  114 00000072 F8B4 8000       LDRH             R8, [R4]    ; Charge la valeur 
+                                                            stockée à l'adresse
+                                                             R4 dans le registr
+                                                            e R8
+  115 00000076 F408 7880       AND              R8,R8, #0x0100 ; Effectue un ET
+                                                             binaire entre R8 e
+                                                            t 0x0100 et stocke 
+                                                            le résultat dans R8
+                                                            
+  116 0000007A F1B8 0F00       CMP              R8, #0      ; Compare la valeur
+                                                             stockée dans R8 à 
+                                                            0
+  117 0000007E D1DB            BNE              allume      ; Saute à l'étiquet
+                                                            te allume2
+  118 00000080 E7F7            B                Second_check ; Sinon, retourne 
+                                                            à l'étiquette Old_E
+                                                            tat_allume
+  119 00000082         
+  120 00000082         Old_Etat_eteint
+  121 00000082 F04F 0A00       MOV              R10, #0     ; Initialisation à 
+                                                            0 du registre OldEt
+                                                            at
+  122 00000086 F8B4 8000       LDRH             R8, [R4]    ; Charge la valeur 
+                                                            stockée à l'adresse
+                                                             R4 dans le registr
 
 
 
 ARM Macro Assembler    Page 6 
 
 
+                                                            e R8
+  123 0000008A F408 7880       AND              R8,R8, #0x0100 ; Effectue un ET
+                                                             binaire entre R8 e
+                                                            t 0x0100 et stocke 
+                                                            le résultat dans R8
+                                                            
+  124 0000008E F1B8 0F00       CMP              R8, #0      ; Compare la valeur
+                                                             stockée dans R8 à 
+                                                            0
+  125 00000092 D000            BEQ              Second_check2 ; Si la comparais
+                                                            on n'est pas égale,
+                                                             saute à l'étiquett
+                                                            e eteint2
+  126 00000094 E7F5            B                Old_Etat_eteint ; Sinon, retour
+                                                            ne à l'étiquette Ol
+                                                            d_Etat_eteint
+  127 00000096         Second_check2
+  128 00000096 F8B4 8000       LDRH             R8, [R4]    ; Charge la valeur 
+                                                            stockée à l'adresse
+                                                             R4 dans le registr
+                                                            e R8
+  129 0000009A F408 7880       AND              R8,R8, #0x0100 ; Effectue un ET
+                                                             binaire entre R8 e
+                                                            t 0x0100 et stocke 
+                                                            le résultat dans R8
+                                                            
+  130 0000009E F1B8 0F00       CMP              R8, #0      ; Compare la valeur
+                                                             stockée dans R8 à 
+                                                            0
+  131 000000A2 D1D8            BNE              eteint      ; Saute à l'étiquet
+                                                            te allume2
+  132 000000A4 E7F7            B                Second_check2 ; Sinon, retourne
+                                                             à l'étiquette Old_
+                                                            Etat_allume
+  133 000000A6         
+  134 000000A6         
+  135 000000A6         
+  136 000000A6         boucle2
+  137 000000A6         Allume
+  138 000000A6 F7FF FFFE       BL               Allume_LED
+  139 000000AA E7FC            B                boucle2
+  140 000000AC         
+  141 000000AC         
+  142 000000AC E7FE            B                .           ; boucle inifinie t
+                                                            erminale...
+  143 000000AE         
+  144 000000AE                 ENDP
+  145 000000AE         
+  146 000000AE                 END
+              00 00 40010808 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\principale.d -o.\objects\principale.o -I.\RTE\Device\STM32F103RB -
+I.\RTE\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\C
 ore\Include -IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\D
 evice\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --pre
 define="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="STM
@@ -355,103 +408,121 @@ Comment: mesdonnees unused
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Relocatable symbols
 
-Allume 0000008A
+Allume 000000A6
 
 Symbol: Allume
    Definitions
-      At line 151 in file Principale.asm
+      At line 137 in file Principale.asm
    Uses
-      At line 100 in file Principale.asm
+      At line 75 in file Principale.asm
+      At line 92 in file Principale.asm
+
+Old_Etat_allume 0000005E
+
+Symbol: Old_Etat_allume
+   Definitions
+      At line 106 in file Principale.asm
+   Uses
+      At line 81 in file Principale.asm
+      At line 112 in file Principale.asm
+
+Old_Etat_eteint 00000082
+
+Symbol: Old_Etat_eteint
+   Definitions
+      At line 120 in file Principale.asm
+   Uses
+      At line 98 in file Principale.asm
+      At line 126 in file Principale.asm
+
+Second_check 00000072
+
+Symbol: Second_check
+   Definitions
+      At line 113 in file Principale.asm
+   Uses
+      At line 111 in file Principale.asm
       At line 118 in file Principale.asm
 
-Old_Etat 00000062
+Second_check2 00000096
 
-Symbol: Old_Etat
+Symbol: Second_check2
    Definitions
-      At line 134 in file Principale.asm
+      At line 127 in file Principale.asm
    Uses
-      At line 107 in file Principale.asm
-      At line 140 in file Principale.asm
+      At line 125 in file Principale.asm
+      At line 132 in file Principale.asm
 
-Old_Etat2 00000076
-
-Symbol: Old_Etat2
-   Definitions
-      At line 142 in file Principale.asm
-   Uses
-      At line 124 in file Principale.asm
-      At line 148 in file Principale.asm
-
-allume 00000034
+allume 00000038
 
 Symbol: allume
    Definitions
-      At line 105 in file Principale.asm
+      At line 82 in file Principale.asm
    Uses
-      At line 112 in file Principale.asm
+      At line 117 in file Principale.asm
 Comment: allume used once
-allume2 00000038
+attente_allume 00000030
 
-Symbol: allume2
+Symbol: attente_allume
    Definitions
-      At line 108 in file Principale.asm
+      At line 79 in file Principale.asm
    Uses
-      At line 139 in file Principale.asm
-Comment: allume2 used once
-boucle 00000008
-
-Symbol: boucle
-   Definitions
-      At line 81 in file Principale.asm
-   Uses
-      At line 94 in file Principale.asm
-Comment: boucle used once
-boucle2 0000008A
-
-Symbol: boucle2
-   Definitions
-      At line 150 in file Principale.asm
-   Uses
-      At line 153 in file Principale.asm
-Comment: boucle2 used once
 
 
 
 ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
-eteint 00000052
+      At line 86 in file Principale.asm
+Comment: attente_allume used once
+attente_eteint 0000004E
+
+Symbol: attente_eteint
+   Definitions
+      At line 96 in file Principale.asm
+   Uses
+      At line 103 in file Principale.asm
+Comment: attente_eteint used once
+boucle 00000008
+
+Symbol: boucle
+   Definitions
+      At line 57 in file Principale.asm
+   Uses
+      At line 69 in file Principale.asm
+Comment: boucle used once
+boucle2 000000A6
+
+Symbol: boucle2
+   Definitions
+      At line 136 in file Principale.asm
+   Uses
+      At line 139 in file Principale.asm
+Comment: boucle2 used once
+eteint 00000056
 
 Symbol: eteint
    Definitions
-      At line 123 in file Principale.asm
+      At line 99 in file Principale.asm
    Uses
       At line 131 in file Principale.asm
 Comment: eteint used once
-eteint2 0000005A
-
-Symbol: eteint2
-   Definitions
-      At line 126 in file Principale.asm
-   Uses
-      At line 147 in file Principale.asm
-Comment: eteint2 used once
 front_montant_allume 00000022
 
 Symbol: front_montant_allume
    Definitions
-      At line 96 in file Principale.asm
+      At line 71 in file Principale.asm
    Uses
-      At line 93 in file Principale.asm
-      At line 129 in file Principale.asm
+      At line 68 in file Principale.asm
+      At line 101 in file Principale.asm
 
 front_montant_eteint 00000040
 
 Symbol: front_montant_eteint
    Definitions
-      At line 114 in file Principale.asm
+      At line 88 in file Principale.asm
    Uses
-      At line 110 in file Principale.asm
+      At line 84 in file Principale.asm
 Comment: front_montant_eteint used once
 main 00000000
 
@@ -461,6 +532,12 @@ Symbol: main
    Uses
       At line 29 in file Principale.asm
 Comment: main used once
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Relocatable symbols
+
 moncode 00000000
 
 Symbol: moncode
@@ -469,7 +546,7 @@ Symbol: moncode
    Uses
       None
 Comment: moncode unused
-13 symbols
+15 symbols
 
 
 
@@ -653,8 +730,8 @@ Symbol: Allume_LED
    Definitions
       At line 19 in file Principale.asm
    Uses
-      At line 102 in file Principale.asm
-      At line 152 in file Principale.asm
+      At line 80 in file Principale.asm
+      At line 138 in file Principale.asm
 
 Eteint_LED 00000000
 
@@ -662,7 +739,7 @@ Symbol: Eteint_LED
    Definitions
       At line 20 in file Principale.asm
    Uses
-      At line 120 in file Principale.asm
+      At line 97 in file Principale.asm
 Comment: Eteint_LED used once
 Init_Cible 00000000
 
@@ -670,7 +747,7 @@ Symbol: Init_Cible
    Definitions
       At line 26 in file Principale.asm
    Uses
-      At line 73 in file Principale.asm
+      At line 55 in file Principale.asm
 Comment: Init_Cible used once
 |Lib$$Request$$armlib| 00000000
 
@@ -681,4 +758,4 @@ Symbol: |Lib$$Request$$armlib|
       None
 Comment: |Lib$$Request$$armlib| unused
 4 symbols
-374 symbols in table
+376 symbols in table

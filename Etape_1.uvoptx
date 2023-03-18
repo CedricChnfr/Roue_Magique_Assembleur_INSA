@@ -142,7 +142,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>84</LineNumber>
+          <LineNumber>60</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>134222324</Address>
           <ByteObject>0</ByteObject>
@@ -153,7 +153,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>.\Principale.asm</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Simu_Etape0\Principale.asm\84</Expression>
+          <Expression>\\Simu_Etape0\Principale.asm\60</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>107</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134222410</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\Principale.asm</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Simu_Etape0\Principale.asm\107</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>121</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134222446</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\Principale.asm</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Simu_Etape0\Principale.asm\121</Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
