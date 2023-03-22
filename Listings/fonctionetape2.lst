@@ -4,17 +4,35 @@
 ARM Macro Assembler    Page 1 
 
 
-    1 00000000         
-    2 00000000         
-    3 00000000         ;*******************************************************
-                       *****************
-    4 00000000                 THUMB
-    5 00000000                 REQUIRE8
-    6 00000000                 PRESERVE8
-    7 00000000         ;*******************************************************
-                       *****************
-    8 00000000         
-    9 00000000                 include          REG_UTILES.inc
+    1 00000000         ;*******************************************************
+                       ********************
+    2 00000000                 THUMB
+    3 00000000                 REQUIRE8
+    4 00000000                 PRESERVE8
+    5 00000000         
+    6 00000000         ;*******************************************************
+                       *******************
+    7 00000000         ;  Fichier Vierge.asm
+    8 00000000         ; Auteur : V.MAHOUT
+    9 00000000         ; Date :  12/11/2013
+   10 00000000         ;*******************************************************
+                       *******************
+   11 00000000         
+   12 00000000         ;***************IMPORT/EXPORT***************************
+                       *******************
+   13 00000000                 EXPORT           Driverglobal
+   14 00000000                 EXPORT           Set
+   15 00000000                 EXPORT           Reset
+   16 00000000         
+   17 00000000         ;*******************************************************
+                       *******************
+   18 00000000         
+   19 00000000         
+   20 00000000         
+   21 00000000         ;***************CONSTANTES******************************
+                       *******************
+   22 00000000         
+   23 00000000                 include          REG_UTILES.inc
     1 00000000         
     2 00000000         ;**************************************
     3 00000000         ;     Les adresess utiles  
@@ -45,6 +63,12 @@ ARM Macro Assembler    Page 1
                        GPIOBASEB
                                EQU              0X40010C00
    26 00000000         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
    27 00000000 00000008 
                        OffsetInput
                                EQU              0x08
@@ -63,12 +87,6 @@ ARM Macro Assembler    Page 1
                        MaskSerial_In1
                                equ              0x80
    34 00000000 00000080 
-
-
-
-ARM Macro Assembler    Page 2 
-
-
                        MaskSerial_Dots
                                equ              0x80
    35 00000000 00000010 
@@ -110,6 +128,12 @@ ARM Macro Assembler    Page 2
                        DataSend
                                EQU              0x40010C18  ; Adresse du regist
                                                             re de données pour 
+
+
+
+ARM Macro Assembler    Page 3 
+
+
                                                             envoyer les signaux
                                                             
    51 00000000         
@@ -118,7 +142,7 @@ ARM Macro Assembler    Page 2
    54 00000000         
    55 00000000         
    56 00000000                 END
-   10 00000000                 include          Lumiere.asm
+   24 00000000                 include          Lumiere.asm
     1 00000000         ;*******************************************************
                        ********************
     2 00000000                 THUMB
@@ -128,12 +152,6 @@ ARM Macro Assembler    Page 2
                        *******************
     6 00000000         
     7 00000000         
-
-
-
-ARM Macro Assembler    Page 3 
-
-
     8 00000000         ;***************VARIABLES*******************************
                        *******************
     9 00000000                 AREA             MesDonnees, data, readwrite
@@ -175,6 +193,12 @@ ARM Macro Assembler    Page 3
               00 00 00 
               00 00 00 
               00 00 00 Barrette1
+
+
+
+ARM Macro Assembler    Page 4 
+
+
                                SPACE            48          ; Réservation de 48
                                                              octets pour la var
                                                             iable Barrette1
@@ -193,12 +217,6 @@ x00, 0x00, 0x00
               00 00 00 
               00 00            DCB              0xFF, 0xFF, 0x00, 0x00, 0x00, 0
 x00, 0x00, 0x00 
-
-
-
-ARM Macro Assembler    Page 4 
-
-
                                                             ; Allume les deux p
                                                             remières Leds en ro
                                                             uge (0xFF) et le re
@@ -228,87 +246,163 @@ x00, 0x00, 0x00
                                                             ; Eteint toutes les
                                                              Leds
    38 00000060                 END
-   11 00000060         
-   12 00000060         
-   13 00000060         ;*******************************************************
-                       *****************
-   14 00000060         ;      IMPORT/EXPORT Système
-   15 00000060         ;*******************************************************
-                       *****************
-   16 00000060         
-   17 00000060                 IMPORT           ||Lib$$Request$$armlib|| [CODE,
-WEAK]
-   18 00000060         
-   19 00000060         
-   20 00000060         ; IMPORT/EXPORT de procédure           
-   21 00000060         
-   22 00000060                 IMPORT           Init_Cible
-   23 00000060                 IMPORT           Driverglobal
-   24 00000060                 IMPORT           Set
-   25 00000060                 IMPORT           Reset
+   25 00000060         ;AREA MesConstantes, data, readwrite
    26 00000060         
    27 00000060         
    28 00000060         
-   29 00000060                 EXPORT           main
+   29 00000060         
    30 00000060         
-   31 00000060         ;*******************************************************
-                       ************************
+   31 00000060         
    32 00000060         
-   33 00000060         
-   34 00000060         ;*******************************************************
-                       ************************
-   35 00000060                 AREA             mesdonnees, data, readwrite
+   33 00000060         ;*******************************************************
+                       *******************
+   34 00000060         
+   35 00000060         
 
 
 
 ARM Macro Assembler    Page 5 
 
 
-   36 00000000         
-   37 00000000         
-   38 00000000         
+   36 00000060         ;***************VARIABLES*******************************
+                       *******************
+   37 00000060                 AREA             MesDonnees, data, readwrite
+   38 00000000         ;*******************************************************
+                       *******************
    39 00000000         
-   40 00000000         ;*******************************************************
-                       ************************
+   40 00000000         
    41 00000000         
-   42 00000000                 AREA             moncode, code, readonly
-   43 00000060         
-   44 00000060         
-   45 00000060         
-   46 00000060         ;*******************************************************
-                       ************************
-   47 00000060         ; Procédure principale et point d'entrée du projet
+   42 00000000         ;*******************************************************
+                       *******************
+   43 00000000         
+   44 00000000         
+   45 00000000         
+   46 00000000         ;***************CODE************************************
+                       *******************
+   47 00000000                 AREA             moncode, code, readonly
    48 00000060         ;*******************************************************
-                       ************************
-   49 00000060         main    PROC
-   50 00000060         ;*******************************************************
-                       ************************
+                       *******************
+   49 00000060         
+   50 00000060         
    51 00000060         
    52 00000060         
    53 00000060         
-   54 00000060 F04F 0000       MOV              R0,#0
-   55 00000064 F7FF FFFE       BL               Init_Cible  ;   ;Initialisation
-                                                             de la cible
-   56 00000068         
-   57 00000068 F7FF FFFE       BL               Driverglobal
-   58 0000006C         
-   59 0000006C         
-   60 0000006C         
-   61 0000006C         
-   62 0000006C E7FE            B                .           ; boucle inifinie t
-                                                            erminale...
-   63 0000006E         
-   64 0000006E                 ENDP
-   65 0000006E         
-   66 0000006E                 END
+   54 00000060         ;#######################################################
+                       #################
+   55 00000060         ; Procédure ????
+   56 00000060         ;#######################################################
+                       #################
+   57 00000060         
+   58 00000060         
+   59 00000060         
+   60 00000060         Driverglobal
+                               PROC
+   61 00000060 F7FF FFFE       BL               Set
+   62 00000064         
+   63 00000064 F04F 0101       MOV              R1, #1      ; Initialisation du
+                                                             compteur de LED à 
+                                                            1
+   64 00000068 F04F 0230       MOV              R2, #48     ; Initialisation de
+                                                             la limite supérieu
+                                                            re de la boucle à 4
+                                                            8
+   65 0000006C         
+   66 0000006C         BoucleLed
+   67 0000006C 4F16            LDR              R7 ,= Barrette1
+   68 0000006E 5C7B            LDRB             R3, [R7, R1] ; Récupération de 
+                                                            la valeur depuis Ba
+                                                            rrette1
+   69 00000070 EA4F 6403       LSL              R4, R3, #24 ; Décalage à gauche
+                                                             de 24 bits de R3, 
+                                                            stocké dans R4
+   70 00000074         
+   71 00000074 F04F 0501       MOV              R5, #1
+   72 00000078 F04F 060C       MOV              R6, #12
+   73 0000007C         
+   74 0000007C         BoucleBit
+   75 0000007C F7FF FFFE       BL               Reset
+   76 00000080         
+   77 00000080 F1B4 4F00       CMP              R4, #0x80000000 ; Compare le bi
+
+
+
+ARM Macro Assembler    Page 6 
+
+
+                                                            t de poid fort 32em
+                                                            e
+   78 00000084 D002            BEQ              Bit0
+   79 00000086 F7FF FFFE       BL               Set
+   80 0000008A E001            B                NextBit
+   81 0000008C         
+   82 0000008C         Bit0
+   83 0000008C F7FF FFFE       BL               Reset
+   84 00000090         
+   85 00000090         NextBit
+   86 00000090 EA4F 0444       LSL              R4, R4, #1
+   87 00000094 F105 0501       ADD              R5, R5, #1
+   88 00000098 42B5            CMP              R5, R6
+   89 0000009A D1EF            BNE              BoucleBit
+   90 0000009C         
+   91 0000009C F101 0101       ADD              R1, R1, #1
+   92 000000A0 4291            CMP              R1, R2
+   93 000000A2 D1E3            BNE              BoucleLed
+   94 000000A4         
+   95 000000A4 F7FF FFFE       BL               Reset
+   96 000000A8 F8DF 8020       LDR              R8 ,= DataSend
+   97 000000AC F898 9000       LDRB             R9, [R8, #0]
+   98 000000B0         ;MOV DataSend, #0
+   99 000000B0         
+  100 000000B0 4770            BX               LR
+  101 000000B2                 ENDP
+  102 000000B2         
+  103 000000B2         
+  104 000000B2         ; Procédure Set: envoie un signal HIGH au registre de do
+                       nnées
+  105 000000B2         Set     PROC
+  106 000000B2 4806            LDR              R0, =DataSend
+  107 000000B4 F04F 0101       MOV              R1, #1
+  108 000000B8 6001            STR              R1, [R0]
+  109 000000BA 4770            BX               LR
+  110 000000BC                 ENDP
+  111 000000BC         
+  112 000000BC         ; Procédure Reset: envoie un signal LOW au registre de d
+                       onnées
+  113 000000BC         Reset   PROC
+  114 000000BC 4803            LDR              R0, =DataSend
+  115 000000BE F04F 0100       MOV              R1, #0
+  116 000000C2 6001            STR              R1, [R0]
+  117 000000C4 4770            BX               LR
+  118 000000C6                 ENDP
+  119 000000C6         
+  120 000000C6         
+  121 000000C6         
+  122 000000C6         ;Tempo Proc
+  123 000000C6         
+  124 000000C6         ;ENDP
+  125 000000C6         
+  126 000000C6         
+  127 000000C6         
+  128 000000C6         
+  129 000000C6         ;*******************************************************
+                       *******************
+  130 000000C6                 END
+              00 00 00000000 
+
+
+
+ARM Macro Assembler    Page 7 
+
+
+              40010C18 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\principale.d -o.\objects\principale.o -I.\RTE\Device\STM
-32F103RB -I.\RTE\_Simul_ -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\
-Core\Include -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\In
-clude --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="
-__UVISION_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_M
-D SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=.
-\listings\principale.lst Principale.asm
+ork --depend=.\objects\fonctionetape2.d -o.\objects\fonctionetape2.o -I.\RTE\De
+vice\STM32F103RB -I.\RTE\_Simul_ -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.
+0\CMSIS\Core\Include -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\D
+evice\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --pre
+define="__UVISION_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM
+32F10X_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" 
+--list=.\listings\fonctionetape2.lst FonctionEtape2.asm
 
 
 
@@ -336,16 +430,75 @@ Symbol: Barrette1
    Definitions
       At line 28 in file Lumiere.asm
    Uses
-      None
-Comment: Barrette1 unused
-main 00000060
+      At line 67 in file FonctionEtape2.asm
+Comment: Barrette1 used once
+Bit0 0000008C
 
-Symbol: main
+Symbol: Bit0
    Definitions
-      At line 49 in file Principale.asm
+      At line 82 in file FonctionEtape2.asm
    Uses
-      At line 29 in file Principale.asm
-Comment: main used once
+      At line 78 in file FonctionEtape2.asm
+Comment: Bit0 used once
+BoucleBit 0000007C
+
+Symbol: BoucleBit
+   Definitions
+      At line 74 in file FonctionEtape2.asm
+   Uses
+      At line 89 in file FonctionEtape2.asm
+Comment: BoucleBit used once
+BoucleLed 0000006C
+
+Symbol: BoucleLed
+   Definitions
+      At line 66 in file FonctionEtape2.asm
+   Uses
+      At line 93 in file FonctionEtape2.asm
+Comment: BoucleLed used once
+Driverglobal 00000060
+
+Symbol: Driverglobal
+   Definitions
+      At line 60 in file FonctionEtape2.asm
+   Uses
+      At line 13 in file FonctionEtape2.asm
+Comment: Driverglobal used once
+NextBit 00000090
+
+Symbol: NextBit
+   Definitions
+      At line 85 in file FonctionEtape2.asm
+   Uses
+      At line 80 in file FonctionEtape2.asm
+Comment: NextBit used once
+Reset 000000BC
+
+Symbol: Reset
+   Definitions
+      At line 113 in file FonctionEtape2.asm
+   Uses
+      At line 15 in file FonctionEtape2.asm
+      At line 75 in file FonctionEtape2.asm
+      At line 83 in file FonctionEtape2.asm
+      At line 95 in file FonctionEtape2.asm
+
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+Set 000000B2
+
+Symbol: Set
+   Definitions
+      At line 105 in file FonctionEtape2.asm
+   Uses
+      At line 14 in file FonctionEtape2.asm
+      At line 61 in file FonctionEtape2.asm
+      At line 79 in file FonctionEtape2.asm
+
 moncode 00000000
 
 Symbol: moncode
@@ -354,22 +507,7 @@ Symbol: moncode
    Uses
       None
 Comment: moncode unused
-3 symbols
-
-
-
-ARM Macro Assembler    Page 1 Alphabetic symbol ordering
-Relocatable symbols
-
-mesdonnees 00000000
-
-Symbol: mesdonnees
-   Definitions
-      At line 35 in file Principale.asm
-   Uses
-      None
-Comment: mesdonnees unused
-1 symbol
+9 symbols
 
 
 
@@ -382,8 +520,10 @@ Symbol: DataSend
    Definitions
       At line 50 in file REG_UTILES.inc
    Uses
-      None
-Comment: DataSend unused
+      At line 96 in file FonctionEtape2.asm
+      At line 106 in file FonctionEtape2.asm
+      At line 114 in file FonctionEtape2.asm
+
 GPIOBASEA 40010800
 
 Symbol: GPIOBASEA
@@ -434,13 +574,13 @@ Symbol: MaskSclk
 Comment: MaskSclk unused
 MaskSerial_Dots 00000080
 
-Symbol: MaskSerial_Dots
-
 
 
 ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Absolute symbols
 
+
+Symbol: MaskSerial_Dots
    Definitions
       At line 34 in file REG_UTILES.inc
    Uses
@@ -498,14 +638,14 @@ OffsetSet 00000010
 
 Symbol: OffsetSet
    Definitions
-      At line 29 in file REG_UTILES.inc
-   Uses
 
 
 
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Absolute symbols
 
+      At line 29 in file REG_UTILES.inc
+   Uses
       None
 Comment: OffsetSet unused
 SCB_VTOR E000ED08
@@ -549,51 +689,4 @@ Symbol: TIM4_SR
       None
 Comment: TIM4_SR unused
 20 symbols
-
-
-
-ARM Macro Assembler    Page 1 Alphabetic symbol ordering
-External symbols
-
-Driverglobal 00000000
-
-Symbol: Driverglobal
-   Definitions
-      At line 23 in file Principale.asm
-   Uses
-      At line 57 in file Principale.asm
-Comment: Driverglobal used once
-Init_Cible 00000000
-
-Symbol: Init_Cible
-   Definitions
-      At line 22 in file Principale.asm
-   Uses
-      At line 55 in file Principale.asm
-Comment: Init_Cible used once
-Reset 00000000
-
-Symbol: Reset
-   Definitions
-      At line 25 in file Principale.asm
-   Uses
-      None
-Comment: Reset unused
-Set 00000000
-
-Symbol: Set
-   Definitions
-      At line 24 in file Principale.asm
-   Uses
-      None
-Comment: Set unused
-|Lib$$Request$$armlib| 00000000
-
-Symbol: |Lib$$Request$$armlib|
-   Definitions
-      At line 17 in file Principale.asm
-   Uses
-      None
-Comment: |Lib$$Request$$armlib| unused
-5 symbols
-365 symbols in table
+367 symbols in table
