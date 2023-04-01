@@ -13,6 +13,8 @@
 	EXPORT Driverglobal
 	EXPORT Set
 	EXPORT Reset
+	EXPORT Tempo
+	IMPORT DataSend
 
 ;**************************************************************************
 
@@ -56,20 +58,17 @@
 ;########################################################################
 
 
-
+;Fonction permettant d'envoyer en série les 576 bits du tableau
 Driverglobal	PROC
-				BL Set
-				
+				BL Set	
 				MOV R1, #1						; Initialisation du compteur de LED à 1
-				MOV R2, #48						; Initialisation de la limite supérieure de la boucle à 48
 				
 BoucleLed
 				LDR  R7 ,= Barrette1	
-				LDRB R3, [R7, R1]		; Récupération de la valeur depuis Barrette1
+				LDRB R3, [R7, R1]				; Récupération de la valeur depuis Barrette1
 				LSL	R4, R3, #24					; Décalage à gauche de 24 bits de R3, stocké dans R4
 				
 				MOV R5, #1
-				MOV R6, #12
 				
 BoucleBit
 				BL Reset
@@ -85,16 +84,18 @@ Bit0
 NextBit
 				LSL	R4, R4, #1
 				ADD R5, R5, #1
-				CMP R5, R6
+				CMP R5, #12
 				BNE BoucleBit
 				
 				ADD R1, R1, #1
-				CMP R1, R2
+				CMP R1, #48
 				BNE BoucleLed
 				
 				BL Reset
+				
 				LDR  R8 ,= DataSend	
-				LDRB R9, [R8, #0]
+				MOV R9, #0
+				STRB R9, [R8]
 				;MOV DataSend, #0
 				
 				BX LR
@@ -103,25 +104,47 @@ NextBit
 
 			; Procédure Set: envoie un signal HIGH au registre de données
 Set 	PROC
-		LDR R0, =DataSend
-		MOV R1, #1
+		PUSH {R0, R1}
+		LDR R0, = GPIOBASEA
+		LDRH R1,[R0,#OffsetOutput]
+		MOV R1,#(0x01 << 5)
 		STR R1, [R0]
+		POP {R0, R1}
 		BX LR
 		ENDP
 		
 	; Procédure Reset: envoie un signal LOW au registre de données
 Reset 	PROC
-		LDR R0, =DataSend
-		MOV R1, #0
+		PUSH {R0, R1}
+		LDR R0, =GPIOBASEA
+		LDRH R1,[R0,#OffsetOutput]
+		MOV R1,#(0x00 << 5)
 		STR R1, [R0]
+		POP {R0, R1}
 		BX LR
 		ENDP
 
 
-
-		;Tempo Proc
+;R1, R6, R10, R11, R12
+;Vérifier tempo
+Tempo 	PROC
+	
+		MOV R10, #0
+		MOV R11, #10
+		MOV R6, #MILSEC
+		MUL R0, R11, R6
 		
-;ENDP
+boucle_10N
+		MOV R10, #0
+		CMP R10, R0
+		BXEQ LR
+		
+boucle
+		ADD R10, R10, #1		
+		CMP R10, #MILSEC	
+		BNE boucle
+		BEQ boucle_10N
+		ENDP
 
 		
 

@@ -23,6 +23,7 @@
 	IMPORT Driverglobal
 	IMPORT Set
 	IMPORT Reset
+	IMPORT Tempo
 	
 	
 
@@ -54,6 +55,7 @@ main  	PROC
 		MOV R0,#0
 		BL Init_Cible;			;Initialisation de la cible
 			
+		BL Tempo
 		BL Driverglobal
 					
 

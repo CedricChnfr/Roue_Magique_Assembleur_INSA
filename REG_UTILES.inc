@@ -46,10 +46,9 @@ TIM1_CNT 		EQU 0x40012c24
 TIM4_ARR 		EQU 0x4000082C 
 TIM4_SR 		EQU 0x40000810
 	
-;Barrette1	EQU 0x40010800	; Adresse de la barrette LED1
-DataSend	EQU 0x40010C18	; Adresse du registre de données pour envoyer les signaux
-
+MILSEC			EQU 222
 	
+
 	
 	
 	

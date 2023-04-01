@@ -21,21 +21,20 @@ Target DLL:      UL2CM3.DLL V1.163.9.0
 Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
-U:\INSA\Langage_assembleur\Projet TP\Roue Magique TP Etape 1\Etape_1.uvprojx
-Project File Date:  03/13/2023
+U:\INSA\Langage_assembleur\Projet_TP\Etape2\Roue Magique TP Etape  2\Etape_2.uvprojx
+Project File Date:  03/23/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Réel'
 Note: source file 'RTE\Device\STM32F107VC\system_stm32f10x.c' - object file renamed from '.\Objects\system_stm32f10x.o' to '.\Objects\system_stm32f10x_1.o'.
+assembling FonctionEtape2.asm...
+FonctionEtape2.asm(133): error: A1647E: Bad register name symbol, expected Integer register
+assembling Lumiere.asm...
 assembling Principale.asm...
-assembling FonctionEtape.asm...
-FonctionEtape.asm(91): warning: A1581W: Added 2 bytes of padding at address 0x22
 assembling startup_stm32f10x_cl.s...
 compiling system_stm32f10x.c...
-linking...
-Program Size: Code=4744 RO-data=368 RW-data=144 ZI-data=1024  
-".\Objects\Reel_Etape0.axf" - 0 Error(s), 1 Warning(s).
+".\Objects\Reel_Etape0.axf" - 1 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -63,9 +62,10 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\startup_stm32f10x_cl.s
-      Source file:   Device\Source\system_stm32f10x.c
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\system_stm32f10x.c
+Target not created.
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
