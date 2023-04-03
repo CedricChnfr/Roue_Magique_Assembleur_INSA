@@ -58,20 +58,20 @@ ARM Macro Assembler    Page 1
    44 0000002A 00 00 00        DCB              0x00, 0x00, 0x00
    45 0000002D 00 00 F0        DCB              0x00, 0x00, 0xF0
    46 00000030                 END
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\lumiere.d -o.\objects\lumiere.o -I.\RTE\Device\STM32F103
-RB -I.\RTE\_Simul_ -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\I
-nclude -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include 
---predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVIS
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\lumiere.d -o.\objects\lumiere.o -I.\RTE\Device\STM32F103RB -I.\RTE
+\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\In
+clude -IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\
+Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-ION_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA
- 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=.\listi
-ngs\lumiere.lst Lumiere.asm
+="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="STM32F10X
+_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list
+=.\listings\lumiere.lst Lumiere.asm
 
 
 

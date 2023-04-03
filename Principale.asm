@@ -56,6 +56,8 @@ main  	PROC
 		BL Init_Cible;			;Initialisation de la cible
 			
 		BL Tempo
+		MOV R5,#0
+
 		BL Driverglobal
 					
 

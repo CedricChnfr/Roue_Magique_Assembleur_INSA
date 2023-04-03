@@ -1,24 +1,24 @@
 Dependencies for Project 'Etape_2', Target 'Simulé': (DO NOT MODIFY !)
-CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
-F (.\Principale.asm)(0x64255A29)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 534" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\listings\principale.lst --xref -o .\objects\principale.o --depend .\objects\principale.d)
-I (REG_UTILES.inc)(0x64255D04)
-I (Lumiere.asm)(0x64255B4D)
-F (.\FonctionEtape2.asm)(0x6425611C)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 534" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\listings\fonctionetape2.lst --xref -o .\objects\fonctionetape2.o --depend .\objects\fonctionetape2.d)
-I (REG_UTILES.inc)(0x64255D04)
-I (Lumiere.asm)(0x64255B4D)
-F (.\Lumiere.asm)(0x64255B4D)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 534" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\listings\lumiere.lst --xref -o .\objects\lumiere.o --depend .\objects\lumiere.d)
-F (.\Matos.lib)(0x5CA777D2)()
-F (RTE\Device\STM32F103RB\RTE_Device.h)(0x57D2BFF0)()
-F (RTE\Device\STM32F103RB\startup_stm32f10x_md.s)(0x5825A8EC)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 534" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1" --pd "_RTE_ SETA 1" --pd "STM32F10X_MD SETA 1"--list .\listings\startup_stm32f10x_md.lst --xref -o .\objects\startup_stm32f10x_md.o --depend .\objects\startup_stm32f10x_md.d)
-F (RTE\Device\STM32F103RB\system_stm32f10x.c)(0x5825A8EC)(--c99 -c --cpu Cortex-M3 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\pilotes\Include-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DSTM32F10X_MD-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
-I (C:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h)(0x58258CCC)
-I (.\RTE\_Simul_\RTE_Components.h)(0x6410794F)
-I (C:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm3.h)(0x5E8F2582)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5E8E9122)
-I (C:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_version.h)(0x5E8F2582)
-I (C:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5E835B22)
-I (C:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5E8F2582)
-I (C:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h)(0x58258CCC)
-F (RTE\Device\STM32F107VC\RTE_Device.h)(0x57D2BFF0)()
-F (RTE\Device\STM32F107VC\startup_stm32f10x_cl.s)(0x5825A8EC)()
-F (RTE\Device\STM32F107VC\system_stm32f10x.c)(0x5825A8EC)()
+CompilerVersion: 6190000::V6.19::ARMCLANG
+F (.\Principale.asm)(0x642B1D88)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --pd "__MICROLIB SETA 1" --diag_suppress=A1950W-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include--pd "__UVISION_VERSION SETA 538"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--list .\listings\principale.lst--xref -o .\objects\principale.o--depend .\objects\principale.d)
+I (REG_UTILES.inc)(0x642B1ECC)
+I (Lumiere.asm)(0x64282643)
+F (.\FonctionEtape2.asm)(0x642B1DC7)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --pd "__MICROLIB SETA 1" --diag_suppress=A1950W-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include--pd "__UVISION_VERSION SETA 538"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--list .\listings\fonctionetape2.lst--xref -o .\objects\fonctionetape2.o--depend .\objects\fonctionetape2.d)
+I (REG_UTILES.inc)(0x642B1ECC)
+I (Lumiere.asm)(0x64282643)
+F (.\Lumiere.asm)(0x64282643)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --pd "__MICROLIB SETA 1" --diag_suppress=A1950W-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include--pd "__UVISION_VERSION SETA 538"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--list .\listings\lumiere.lst--xref -o .\objects\lumiere.o--depend .\objects\lumiere.d)
+F (.\Matos.lib)(0x64282643)()
+F (RTE/Device/STM32F103RB/RTE_Device.h)(0x64282647)()
+F (RTE/Device/STM32F103RB/startup_stm32f10x_md.s)(0x64282647)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --pd "__MICROLIB SETA 1" --diag_suppress=A1950W-I.\RTE\Device\STM32F103RB-I.\RTE\_Simul_-IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include--pd "__UVISION_VERSION SETA 538"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--pd "_RTE_ SETA 1"--pd "STM32F10X_MD SETA 1"--list .\listings\startup_stm32f10x_md.lst--xref -o .\objects\startup_stm32f10x_md.o--depend .\objects\startup_stm32f10x_md.d)
+F (RTE/Device/STM32F103RB/system_stm32f10x.c)(0x64282647)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../pilotes/Include-I./RTE/Device/STM32F103RB-I./RTE/_Simul_-IC:/Users/cedri/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/cedri/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F10X_MD -D_RTE_ -DSTM32F10X_MD-o ./objects/system_stm32f10x.o -MD)
+I (C:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include\stm32f10x.h)(0x61ADDBCE)
+I (RTE\_Simul_\RTE_Components.h)(0x6428B003)
+I (C:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626FAD4E)
+I (C:\ARM\ARMCLANG\include\stdint.h)(0x6388AB78)
+I (C:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626FAD4E)
+I (C:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626FAD4E)
+I (C:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626FAD4E)
+I (C:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include\system_stm32f10x.h)(0x61ADDBCE)
+F (RTE/Device/STM32F107VC/RTE_Device.h)(0x64282647)()
+F (RTE/Device/STM32F107VC/startup_stm32f10x_cl.s)(0x64282647)()
+F (RTE/Device/STM32F107VC/system_stm32f10x.c)(0x64282647)()

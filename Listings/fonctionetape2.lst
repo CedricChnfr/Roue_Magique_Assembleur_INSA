@@ -125,15 +125,16 @@ ARM Macro Assembler    Page 2
    47 00000000 40000810 
                        TIM4_SR EQU              0x40000810
    48 00000000         
-   49 00000000 000000DE 
-                       MILSEC  EQU              222
-   50 00000000         
+   49 00000000 000000DA 
+                       MILSEC  EQU              218         ;Pour attendre 0.5m
+                                                            s
 
 
 
 ARM Macro Assembler    Page 3 
 
 
+   50 00000000         
    51 00000000         
    52 00000000         
    53 00000000         
@@ -192,13 +193,13 @@ ARM Macro Assembler    Page 3
    42 00000024 00 00 00        DCB              0x00, 0x00, 0x00
    43 00000027 00 00 00        DCB              0x00, 0x00, 0x00
    44 0000002A 00 00 00        DCB              0x00, 0x00, 0x00
-   45 0000002D 00 00 F0        DCB              0x00, 0x00, 0xF0
 
 
 
 ARM Macro Assembler    Page 4 
 
 
+   45 0000002D 00 00 F0        DCB              0x00, 0x00, 0xF0
    46 00000030                 END
    27 00000030         ;AREA MesConstantes, data, readwrite
    28 00000030         
@@ -252,18 +253,18 @@ ARM Macro Assembler    Page 4
                                                             1
    65 00000038         
    66 00000038         BoucleLed
-   67 00000038 4F22            LDR              R7 ,= Barrette1
+   67 00000038 4F24            LDR              R7 ,= Barrette1
    68 0000003A 5C7B            LDRB             R3, [R7, R1] ; Récupération de 
                                                             la valeur depuis Ba
                                                             rrette1
    69 0000003C EA4F 6403       LSL              R4, R3, #24 ; Décalage à gauche
-                                                             de 24 bits de R3, 
 
 
 
 ARM Macro Assembler    Page 5 
 
 
+                                                             de 24 bits de R3, 
                                                             stocké dans R4
    70 00000040         
    71 00000040 F04F 0501       MOV              R5, #1
@@ -293,7 +294,7 @@ ARM Macro Assembler    Page 5
    93 0000006C         
    94 0000006C F7FF FFFE       BL               Reset
    95 00000070         
-   96 00000070 F8DF 8054       LDR              R8 ,= DataSend
+   96 00000070 F8DF 805C       LDR              R8 ,= DataSend
    97 00000074 F04F 0900       MOV              R9, #0
    98 00000078 F888 9000       STRB             R9, [R8]
    99 0000007C         ;MOV DataSend, #0
@@ -306,7 +307,7 @@ ARM Macro Assembler    Page 5
                        nnées
   106 0000007E         Set     PROC
   107 0000007E B403            PUSH             {R0, R1}
-  108 00000080 4812            LDR              R0, = GPIOBASEA
+  108 00000080 4814            LDR              R0, = GPIOBASEA
   109 00000082 8981            LDRH             R1,[R0,#OffsetOutput]
   110 00000084 F04F 0120       MOV              R1,#(0x01 << 5)
   111 00000088 6001            STR              R1, [R0]
@@ -318,58 +319,62 @@ ARM Macro Assembler    Page 5
                        onnées
   117 0000008E         Reset   PROC
   118 0000008E B403            PUSH             {R0, R1}
-  119 00000090 480E            LDR              R0, =GPIOBASEA
+  119 00000090 4810            LDR              R0, =GPIOBASEA
   120 00000092 8981            LDRH             R1,[R0,#OffsetOutput]
   121 00000094 F04F 0100       MOV              R1,#(0x00 << 5)
   122 00000098 6001            STR              R1, [R0]
-  123 0000009A BC03            POP              {R0, R1}
 
 
 
 ARM Macro Assembler    Page 6 
 
 
+  123 0000009A BC03            POP              {R0, R1}
   124 0000009C 4770            BX               LR
   125 0000009E                 ENDP
   126 0000009E         
   127 0000009E         
   128 0000009E         ;R1, R6, R10, R11, R12
-  129 0000009E         Tempo   PROC
-  130 0000009E         
-  131 0000009E F04F 0A00       MOV              R10, #0
-  132 000000A2 F04F 0B0A       MOV              R11, #10
-  133 000000A6 F04F 06DE       MOV              R6, #MILSEC
-  134 000000AA FB0B F006       MUL              R0, R11, R6
-  135 000000AE         
-  136 000000AE         boucle_10N
-  137 000000AE F04F 0A00       MOV              R10, #0
-  138 000000B2 4582            CMP              R10, R0
-  139 000000B4 BF08 4770       BXEQ             LR
-  140 000000B8         
-  141 000000B8         boucle
-  142 000000B8 F10A 0A01       ADD              R10, R10, #1
-  143 000000BC F1BA 0FDE       CMP              R10, #MILSEC
-  144 000000C0 D1FA            BNE              boucle
-  145 000000C2 D0F4            BEQ              boucle_10N
-  146 000000C4                 ENDP
-  147 000000C4         
-  148 000000C4         
-  149 000000C4         
-  150 000000C4         
-  151 000000C4         ;*******************************************************
+  129 0000009E         ;Vérifier tempo
+  130 0000009E         Tempo   PROC
+  131 0000009E         
+  132 0000009E F04F 0A00       MOV              R10, #0
+  133 000000A2 F04F 0B00       MOV              R11, #0
+  134 000000A6 F04F 0C0A       MOV              R12, #10
+  135 000000AA F04F 06DA       MOV              R6, #MILSEC
+  136 000000AE FB06 F00C       MUL              R0, R6, R12
+  137 000000B2         
+  138 000000B2         boucle_10N
+  139 000000B2 F04F 0A00       MOV              R10, #0
+  140 000000B6 F10B 0B01       ADD              R11, R11, #1
+  141 000000BA 4583            CMP              R11, R0
+  142 000000BC BF08 4770       BXEQ             LR
+  143 000000C0         
+  144 000000C0         boucle
+  145 000000C0 F10A 0A01       ADD              R10, R10, #1
+  146 000000C4 F1BA 0FDA       CMP              R10, #MILSEC
+  147 000000C8 D1FA            BNE              boucle
+  148 000000CA         
+  149 000000CA D0F2            BEQ              boucle_10N
+  150 000000CC                 ENDP
+  151 000000CC         
+  152 000000CC         
+  153 000000CC         
+  154 000000CC         
+  155 000000CC         ;*******************************************************
                        *******************
-  152 000000C4                 END
+  156 000000CC                 END
               00000000 
               00000000 
               40010800 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\fonctionetape2.d -o.\objects\fonctionetape2.o -I.\RTE\De
-vice\STM32F103RB -I.\RTE\_Simul_ -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.
-0\CMSIS\Core\Include -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\D
-evice\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --pre
-define="__UVISION_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM
-32F10X_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" 
---list=.\listings\fonctionetape2.lst FonctionEtape2.asm
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\fonctionetape2.d -o.\objects\fonctionetape2.o -I.\RTE\Device\STM32
+F103RB -I.\RTE\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0
+\CMSIS\Core\Include -IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP
+\2.4.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 
+1" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predef
+ine="STM32F10X_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD 
+SETA 1" --list=.\listings\fonctionetape2.lst FonctionEtape2.asm
 
 
 
@@ -470,25 +475,25 @@ Tempo 0000009E
 
 Symbol: Tempo
    Definitions
-      At line 129 in file FonctionEtape2.asm
+      At line 130 in file FonctionEtape2.asm
    Uses
       At line 16 in file FonctionEtape2.asm
 Comment: Tempo used once
-boucle 000000B8
+boucle 000000C0
 
 Symbol: boucle
    Definitions
-      At line 141 in file FonctionEtape2.asm
-   Uses
       At line 144 in file FonctionEtape2.asm
+   Uses
+      At line 147 in file FonctionEtape2.asm
 Comment: boucle used once
-boucle_10N 000000AE
+boucle_10N 000000B2
 
 Symbol: boucle_10N
    Definitions
-      At line 136 in file FonctionEtape2.asm
+      At line 138 in file FonctionEtape2.asm
    Uses
-      At line 145 in file FonctionEtape2.asm
+      At line 149 in file FonctionEtape2.asm
 Comment: boucle_10N used once
 moncode 00000000
 
@@ -522,14 +527,14 @@ Symbol: GPIOBASEB
    Uses
       None
 Comment: GPIOBASEB unused
-MILSEC 000000DE
+MILSEC 000000DA
 
 Symbol: MILSEC
    Definitions
       At line 49 in file REG_UTILES.inc
    Uses
-      At line 133 in file FonctionEtape2.asm
-      At line 143 in file FonctionEtape2.asm
+      At line 135 in file FonctionEtape2.asm
+      At line 146 in file FonctionEtape2.asm
 
 MaskBlank 00000004
 

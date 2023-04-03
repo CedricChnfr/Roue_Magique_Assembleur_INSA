@@ -130,19 +130,22 @@ Reset 	PROC
 Tempo 	PROC
 	
 		MOV R10, #0
-		MOV R11, #10
+		MOV R11, #0
+		MOV R12, #10
 		MOV R6, #MILSEC
-		MUL R0, R11, R6
+		MUL R0, R6, R12		
 		
 boucle_10N
 		MOV R10, #0
-		CMP R10, R0
+		ADD R11, R11, #1
+		CMP R11, R0
 		BXEQ LR
 		
 boucle
 		ADD R10, R10, #1		
 		CMP R10, #MILSEC	
 		BNE boucle
+		
 		BEQ boucle_10N
 		ENDP
 
