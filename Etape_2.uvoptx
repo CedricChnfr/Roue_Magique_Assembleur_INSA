@@ -152,22 +152,6 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>59</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134222376</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\Principale.asm</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Simu_Etape0\Principale.asm\59</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>58</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>134222372</Address>
@@ -182,20 +166,20 @@
           <Expression>\\Simu_Etape0\Principale.asm\58</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>149</LineNumber>
+          <LineNumber>59</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134222590</Address>
+          <Address>134222376</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>.\FonctionEtape2.asm</Filename>
+          <Filename>.\Principale.asm</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Simu_Etape0\FonctionEtape2.asm\149</Expression>
+          <Expression>\\Simu_Etape0\Principale.asm\59</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>

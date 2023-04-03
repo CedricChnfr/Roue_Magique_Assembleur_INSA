@@ -125,8 +125,8 @@ ARM Macro Assembler    Page 2
    47 00000000 40000810 
                        TIM4_SR EQU              0x40000810
    48 00000000         
-   49 00000000 000000DA 
-                       MILSEC  EQU              218         ;Pour attendre 0.5m
+   49 00000000 000000D7 
+                       MILSEC  EQU              215         ;Pour attendre 0.5m
                                                             s
 
 
@@ -253,7 +253,7 @@ ARM Macro Assembler    Page 4
                                                             1
    65 00000038         
    66 00000038         BoucleLed
-   67 00000038 4F24            LDR              R7 ,= Barrette1
+   67 00000038 4F21            LDR              R7 ,= Barrette1
    68 0000003A 5C7B            LDRB             R3, [R7, R1] ; Récupération de 
                                                             la valeur depuis Ba
                                                             rrette1
@@ -294,7 +294,7 @@ ARM Macro Assembler    Page 5
    93 0000006C         
    94 0000006C F7FF FFFE       BL               Reset
    95 00000070         
-   96 00000070 F8DF 805C       LDR              R8 ,= DataSend
+   96 00000070 F8DF 8050       LDR              R8 ,= DataSend
    97 00000074 F04F 0900       MOV              R9, #0
    98 00000078 F888 9000       STRB             R9, [R8]
    99 0000007C         ;MOV DataSend, #0
@@ -307,7 +307,7 @@ ARM Macro Assembler    Page 5
                        nnées
   106 0000007E         Set     PROC
   107 0000007E B403            PUSH             {R0, R1}
-  108 00000080 4814            LDR              R0, = GPIOBASEA
+  108 00000080 4811            LDR              R0, = GPIOBASEA
   109 00000082 8981            LDRH             R1,[R0,#OffsetOutput]
   110 00000084 F04F 0120       MOV              R1,#(0x01 << 5)
   111 00000088 6001            STR              R1, [R0]
@@ -319,7 +319,7 @@ ARM Macro Assembler    Page 5
                        onnées
   117 0000008E         Reset   PROC
   118 0000008E B403            PUSH             {R0, R1}
-  119 00000090 4810            LDR              R0, =GPIOBASEA
+  119 00000090 480D            LDR              R0, =GPIOBASEA
   120 00000092 8981            LDRH             R1,[R0,#OffsetOutput]
   121 00000094 F04F 0100       MOV              R1,#(0x00 << 5)
   122 00000098 6001            STR              R1, [R0]
@@ -338,33 +338,28 @@ ARM Macro Assembler    Page 6
   129 0000009E         ;Vérifier tempo
   130 0000009E         Tempo   PROC
   131 0000009E         
-  132 0000009E F04F 0A00       MOV              R10, #0
-  133 000000A2 F04F 0B00       MOV              R11, #0
-  134 000000A6 F04F 0C0A       MOV              R12, #10
-  135 000000AA F04F 06DA       MOV              R6, #MILSEC
-  136 000000AE FB06 F00C       MUL              R0, R6, R12
-  137 000000B2         
-  138 000000B2         boucle_10N
-  139 000000B2 F04F 0A00       MOV              R10, #0
-  140 000000B6 F10B 0B01       ADD              R11, R11, #1
-  141 000000BA 4583            CMP              R11, R0
-  142 000000BC BF08 4770       BXEQ             LR
-  143 000000C0         
-  144 000000C0         boucle
-  145 000000C0 F10A 0A01       ADD              R10, R10, #1
-  146 000000C4 F1BA 0FDA       CMP              R10, #MILSEC
-  147 000000C8 D1FA            BNE              boucle
-  148 000000CA         
-  149 000000CA D0F2            BEQ              boucle_10N
-  150 000000CC                 ENDP
-  151 000000CC         
-  152 000000CC         
-  153 000000CC         
-  154 000000CC         
-  155 000000CC         ;*******************************************************
+  132 0000009E F04F 0B00       MOV              R11, #0
+  133 000000A2         boucle_10N
+  134 000000A2 F04F 0A00       MOV              R10, #0
+  135 000000A6 F10B 0B01       ADD              R11, R11, #1
+  136 000000AA F1BB 0F0B       CMP              R11, #11
+  137 000000AE BF08 4770       BXEQ             LR
+  138 000000B2         
+  139 000000B2         boucle
+  140 000000B2 F10A 0A01       ADD              R10, R10, #1
+  141 000000B6 F1BA 0FD7       CMP              R10, #MILSEC
+  142 000000BA D1FA            BNE              boucle
+  143 000000BC         
+  144 000000BC D0F1            BEQ              boucle_10N
+  145 000000BE                 ENDP
+  146 000000BE         
+  147 000000BE         
+  148 000000BE         
+  149 000000BE         
+  150 000000BE         ;*******************************************************
                        *******************
-  156 000000CC                 END
-              00000000 
+  151 000000BE                 END
+              00 00 00000000 
               00000000 
               40010800 
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
@@ -479,21 +474,21 @@ Symbol: Tempo
    Uses
       At line 16 in file FonctionEtape2.asm
 Comment: Tempo used once
-boucle 000000C0
+boucle 000000B2
 
 Symbol: boucle
    Definitions
-      At line 144 in file FonctionEtape2.asm
+      At line 139 in file FonctionEtape2.asm
    Uses
-      At line 147 in file FonctionEtape2.asm
+      At line 142 in file FonctionEtape2.asm
 Comment: boucle used once
-boucle_10N 000000B2
+boucle_10N 000000A2
 
 Symbol: boucle_10N
    Definitions
-      At line 138 in file FonctionEtape2.asm
+      At line 133 in file FonctionEtape2.asm
    Uses
-      At line 149 in file FonctionEtape2.asm
+      At line 144 in file FonctionEtape2.asm
 Comment: boucle_10N used once
 moncode 00000000
 
@@ -527,15 +522,14 @@ Symbol: GPIOBASEB
    Uses
       None
 Comment: GPIOBASEB unused
-MILSEC 000000DA
+MILSEC 000000D7
 
 Symbol: MILSEC
    Definitions
       At line 49 in file REG_UTILES.inc
    Uses
-      At line 135 in file FonctionEtape2.asm
-      At line 146 in file FonctionEtape2.asm
-
+      At line 141 in file FonctionEtape2.asm
+Comment: MILSEC used once
 MaskBlank 00000004
 
 Symbol: MaskBlank
@@ -572,9 +566,9 @@ MaskSerial_Dots 00000080
 
 
 
+
 ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Absolute symbols
-
 
 Symbol: MaskSerial_Dots
    Definitions
@@ -634,13 +628,13 @@ Comment: OffsetReset unused
 OffsetSet 00000010
 
 Symbol: OffsetSet
+   Definitions
 
 
 
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Absolute symbols
 
-   Definitions
       At line 29 in file REG_UTILES.inc
    Uses
       None

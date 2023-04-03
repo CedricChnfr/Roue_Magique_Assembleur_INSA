@@ -105,8 +105,8 @@ ARM Macro Assembler    Page 2
    47 00000000 40000810 
                        TIM4_SR EQU              0x40000810
    48 00000000         
-   49 00000000 000000DA 
-                       MILSEC  EQU              218         ;Pour attendre 0.5m
+   49 00000000 000000D7 
+                       MILSEC  EQU              215         ;Pour attendre 0.5m
                                                             s
    50 00000000         
    51 00000000         
@@ -349,7 +349,7 @@ Symbol: GPIOBASEB
    Uses
       None
 Comment: GPIOBASEB unused
-MILSEC 000000DA
+MILSEC 000000D7
 
 Symbol: MILSEC
    Definitions

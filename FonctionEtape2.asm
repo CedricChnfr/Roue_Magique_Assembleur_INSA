@@ -129,16 +129,11 @@ Reset 	PROC
 ;Vérifier tempo
 Tempo 	PROC
 	
-		MOV R10, #0
-		MOV R11, #0
-		MOV R12, #10
-		MOV R6, #MILSEC
-		MUL R0, R6, R12		
-		
+		MOV R11, #0		
 boucle_10N
 		MOV R10, #0
 		ADD R11, R11, #1
-		CMP R11, R0
+		CMP R11, #11
 		BXEQ LR
 		
 boucle
