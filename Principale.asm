@@ -25,6 +25,7 @@
 	IMPORT Set_SIN
 	IMPORT Reset_SIN
 	IMPORT Tempo
+	IMPORT DriverPile
 	
 	
 
@@ -65,7 +66,7 @@ Clignotement
 		
 		;BL Driverglobal
 		LDR R0, =BarretteN
-		BL DriverReg
+		BL DriverPile
 		
 		;Tempo
 		MOV R0, #500
@@ -73,7 +74,7 @@ Clignotement
 		
 		;BL Driverglobal
 		LDR R0, =Barrette1
-		BL DriverReg
+		BL DriverPile
 		
 		;Tempo
 		MOV R0, #500

@@ -18,6 +18,7 @@
 	EXPORT Reset_SIN
 	EXPORT Tempo
 	IMPORT DataSend
+	EXPORT DriverPile
 
 ;**************************************************************************
 
@@ -199,6 +200,14 @@ NextBit2
 			ENDP
 				
 				
+DriverPile	PROC
+			PUSH {LR}
+			PUSH {R0}
+			BL DriverReg
+			POP {R0}
+			MOV R0, R0
+			POP {PC}
+			ENDP
 				
 ;R1, R6, R10, R11, R12
 ;Vérifier tempo
