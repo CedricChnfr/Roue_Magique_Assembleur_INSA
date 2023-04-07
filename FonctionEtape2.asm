@@ -11,8 +11,10 @@
 
 ;***************IMPORT/EXPORT**********************************************
 	EXPORT Driverglobal
-	EXPORT Set
-	EXPORT Reset
+	EXPORT Set_SCLK
+	EXPORT Reset_SCLK
+	EXPORT Set_SIN
+	EXPORT Reset_SIN
 	EXPORT Tempo
 	IMPORT DataSend
 
@@ -60,30 +62,32 @@
 
 ;Fonction permettant d'envoyer en série les 576 bits du tableau
 Driverglobal	PROC
-				BL Set	
-				MOV R1, #1						; Initialisation du compteur de LED à 1
+				BL Set_SCLK	; Set(SCLK)
+				MOV R1, #1	; Initialisation du compteur de LED ? 1
 				
 BoucleLed
-				LDR  R7 ,= Barrette1	
-				LDRB R3, [R7, R1]				; Récupération de la valeur depuis Barrette1
-				LSL	R4, R3, #24					; Décalage à gauche de 24 bits de R3, stocké dans R4
+				LDR  R7 ,=Barrette1	; On load les valeur de la barette dans R7
+				LDRB R3, [R7, R1] ; R3 = ValCourante, On met la valeur de Barette[n] dans R3
+				LSL	R4, R3, #24	; (ValCourante) <- (ValCourante) << 24
 				
-				MOV R5, #1
+				MOV R5, #0
 				
 BoucleBit
-				BL Reset
+				BL Reset_SCLK
 				
-				CMP R4, #0x80000000				; Compare le bit de poid fort 32eme
-				BEQ Bit0
-				BL Set
+				TST R4, #(0x1<<31)				; Compare le bit de poid fort 32eme
+				BNE Bit1
+				BL Reset_SIN
 				B NextBit
 				
-Bit0
-				BL Reset
+Bit1
+				BL Set_SIN
 				
 NextBit
 				LSL	R4, R4, #1
-				ADD R5, R5, #1
+				BL Set_SCLK
+				
+				ADD R5, R5, #1 ; i++
 				CMP R5, #12
 				BNE BoucleBit
 				
@@ -91,9 +95,9 @@ NextBit
 				CMP R1, #48
 				BNE BoucleLed
 				
-				BL Reset
+				BL Reset_SCLK
 				
-				LDR  R8 ,= DataSend	
+				LDR  R8 ,=DataSend	
 				MOV R9, #0
 				STRB R9, [R8]
 				;MOV DataSend, #0
@@ -102,27 +106,48 @@ NextBit
 				ENDP
 
 
-			; Procédure Set: envoie un signal HIGH au registre de données
-Set 	PROC
-		PUSH {R0, R1}
-		LDR R0, = GPIOBASEA
-		LDRH R1,[R0,#OffsetOutput]
-		MOV R1,#(0x01 << 5)
-		STR R1, [R0]
-		POP {R0, R1}
-		BX LR
-		ENDP
+			; Procédure Set: envoie un signal HIGH au registre de donn?es
+Set_SCLK 	PROC
+			PUSH {R0, R1}
+			LDR R0, =GPIOBASEA
+			LDRH R1,[R0,#OffsetSet]
+			MOV R1,#(0x01 << 5)
+			STRH R1, [R0, #OffsetSet]
+			POP {R0, R1}
+			BX LR
+			ENDP
 		
-	; Procédure Reset: envoie un signal LOW au registre de données
-Reset 	PROC
-		PUSH {R0, R1}
-		LDR R0, =GPIOBASEA
-		LDRH R1,[R0,#OffsetOutput]
-		MOV R1,#(0x00 << 5)
-		STR R1, [R0]
-		POP {R0, R1}
-		BX LR
-		ENDP
+	; Proc?dure Reset: envoie un signal LOW au registre de donn?es
+Reset_SCLK 	PROC
+			PUSH {R0, R1}
+			LDR R0, =GPIOBASEA
+			LDRH R1,[R0,#OffsetReset]
+			MOV R1,#(0x01 << 5)
+			STRH R1, [R0, #OffsetReset]
+			POP {R0, R1}
+			BX LR
+			ENDP
+			
+Set_SIN 	PROC
+			PUSH {R0, R1}
+			LDR R0, = GPIOBASEA
+			LDRH R1,[R0,#OffsetSet]
+			MOV R1,#(0x01 << 7)
+			STRH R1, [R0, #OffsetSet]
+			POP {R0, R1}
+			BX LR
+			ENDP
+		
+	; Proc?dure Reset: envoie un signal LOW au registre de donn?es
+Reset_SIN 	PROC
+			PUSH {R0, R1}
+			LDR R0, =GPIOBASEA
+			LDRH R1,[R0,#OffsetReset]
+			MOV R1,#(0x01 << 7)
+			STRH R1, [R0, #OffsetReset]
+			POP {R0, R1}
+			BX LR
+			ENDP
 
 
 ;R1, R6, R10, R11, R12
@@ -133,7 +158,7 @@ Tempo 	PROC
 boucle_10N
 		MOV R10, #0
 		ADD R11, R11, #1
-		CMP R11, #11
+		CMP R11, R0
 		BXEQ LR
 		
 boucle
@@ -145,6 +170,11 @@ boucle
 		ENDP
 
 		
+DriverReg	PROC
+	
+			
+	
+			ENDP
 
 
 ;**************************************************************************

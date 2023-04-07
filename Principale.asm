@@ -1,5 +1,3 @@
-		
-
 ;************************************************************************
 	THUMB	
 	REQUIRE8
@@ -11,18 +9,20 @@
 
 
 ;************************************************************************
-; 					IMPORT/EXPORT Système
+; 					IMPORT/EXPORT Syst?me
 ;************************************************************************
 
 	IMPORT ||Lib$$Request$$armlib|| [CODE,WEAK]
 
 
-; IMPORT/EXPORT de procédure           
+; IMPORT/EXPORT de proc?dure           
 
 	IMPORT Init_Cible
 	IMPORT Driverglobal
-	IMPORT Set
-	IMPORT Reset
+	IMPORT Set_SCLK
+	IMPORT Reset_SCLK
+	IMPORT Set_SIN
+	IMPORT Reset_SIN
 	IMPORT Tempo
 	
 	
@@ -45,20 +45,24 @@
 
 
 ;*******************************************************************************
-; Procédure principale et point d'entrée du projet
+; Procédure principale et point d'entr?e du projet
 ;*******************************************************************************
 main  	PROC 
 ;*******************************************************************************
 
 
 		
-		MOV R0,#0
+		MOV R0,#1
 		BL Init_Cible;			;Initialisation de la cible
-			
-		BL Tempo
-		MOV R5,#0
-
+		
 		BL Driverglobal
+		
+		;LDR  R7 ,=Barrette1		
+		;BL Tempo
+				
+
+
+		
 					
 
 		
