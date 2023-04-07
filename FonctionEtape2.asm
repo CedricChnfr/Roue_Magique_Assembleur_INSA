@@ -63,6 +63,7 @@
 
 ;Fonction permettant d'envoyer en série les 576 bits du tableau
 Driverglobal	PROC
+
 				BL Set_SCLK	; Set(SCLK)
 				MOV R1, #1	; Initialisation du compteur de LED ? 1
 				
@@ -153,6 +154,7 @@ Reset_SIN 	PROC
 		
 		
 DriverReg	PROC
+			PUSH{LR}
 			BL Set_SCLK	; Set(SCLK)
 			MOV R1, #1	; Initialisation du compteur de LED ? 1
 				
@@ -191,7 +193,7 @@ NextBit2
 			LDR  R8 ,=DataSend	
 			MOV R9, #0
 			STRB R9, [R8]
-			
+			POP{LR}
 			BX LR
 			
 			ENDP

@@ -39,56 +39,56 @@ ARM Macro Assembler    Page 1
    26 00000000         
    27 00000000         Barrette1
    28 00000000 FF 00 00        DCB              0xFF, 0x00, 0x00
-   29 00000003 00 00 00        DCB              0x00, 0x00, 0x00
-   30 00000006 00 00 00        DCB              0x00, 0x00, 0x00
-   31 00000009 00 00 00        DCB              0x00, 0x00, 0x00
-   32 0000000C 00 00 00        DCB              0x00, 0x00, 0x00
-   33 0000000F 00 00 00        DCB              0x00, 0x00, 0x00
-   34 00000012 00 00 00        DCB              0x00, 0x00, 0x00
-   35 00000015 00 00 00        DCB              0x00, 0x00, 0x00
-   36 00000018 00 00 FF        DCB              0x00, 0x00, 0xFF
-   37 0000001B 00 00 00        DCB              0x00, 0x00, 0x00
-   38 0000001E 00 00 00        DCB              0x00, 0x00, 0x00
-   39 00000021 00 00 00        DCB              0x00, 0x00, 0x00
-   40 00000024 00 00 00        DCB              0x00, 0x00, 0x00
-   41 00000027 00 00 00        DCB              0x00, 0x00, 0x00
-   42 0000002A 00 00 00        DCB              0x00, 0x00, 0x00
-   43 0000002D 00 FF 00        DCB              0x00, 0xFF, 0x00
+   29 00000003 FF 00 00        DCB              0xFF, 0x00, 0x00
+   30 00000006 FF 00 00        DCB              0xFF, 0x00, 0x00
+   31 00000009 FF 00 00        DCB              0xFF, 0x00, 0x00
+   32 0000000C FF 00 00        DCB              0xFF, 0x00, 0x00
+   33 0000000F FF 00 00        DCB              0xFF, 0x00, 0x00
+   34 00000012 FF 00 00        DCB              0xFF, 0x00, 0x00
+   35 00000015 FF 00 00        DCB              0xFF, 0x00, 0x00
+   36 00000018 FF 00 00        DCB              0xFF, 0x00, 0x00
+   37 0000001B FF 00 00        DCB              0xFF, 0x00, 0x00
+   38 0000001E FF 00 00        DCB              0xFF, 0x00, 0x00
+   39 00000021 FF 00 00        DCB              0xFF, 0x00, 0x00
+   40 00000024 FF 00 00        DCB              0xFF, 0x00, 0x00
+   41 00000027 FF 00 00        DCB              0xFF, 0x00, 0x00
+   42 0000002A FF 00 00        DCB              0xFF, 0x00, 0x00
+   43 0000002D FF 00 00        DCB              0xFF, 0x00, 0x00
    44 00000030         
    45 00000030         
    46 00000030         
    47 00000030         BarretteN
-   48 00000030 FF 00 00        DCB              0xFF, 0x00, 0x00
-   49 00000033 00 00 00        DCB              0x00, 0x00, 0x00
-   50 00000036 00 00 00        DCB              0x00, 0x00, 0x00
-   51 00000039 00 00 00        DCB              0x00, 0x00, 0x00
-   52 0000003C 00 00 00        DCB              0x00, 0x00, 0x00
+   48 00000030 00 FF 00        DCB              0x00, 0xFF, 0x00
+   49 00000033 00 FF 00        DCB              0x00, 0xFF, 0x00
+   50 00000036 00 FF 00        DCB              0x00, 0xFF, 0x00
+   51 00000039 00 FF 00        DCB              0x00, 0xFF, 0x00
+   52 0000003C 00 FF 00        DCB              0x00, 0xFF, 0x00
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   53 0000003F 00 00 00        DCB              0x00, 0x00, 0x00
-   54 00000042 00 00 00        DCB              0x00, 0x00, 0x00
-   55 00000045 FF 00 00        DCB              0xFF, 0x00, 0x00
-   56 00000048 00 00 00        DCB              0x00, 0x00, 0x00
-   57 0000004B 00 00 00        DCB              0x00, 0x00, 0x00
-   58 0000004E 00 00 00        DCB              0x00, 0x00, 0x00
-   59 00000051 00 00 00        DCB              0x00, 0x00, 0x00
-   60 00000054 00 00 00        DCB              0x00, 0x00, 0x00
-   61 00000057 00 00 00        DCB              0x00, 0x00, 0x00
-   62 0000005A 00 00 00        DCB              0x00, 0x00, 0x00
-   63 0000005D FF 00 00        DCB              0xFF, 0x00, 0x00
+   53 0000003F 00 FF 00        DCB              0x00, 0xFF, 0x00
+   54 00000042 00 FF 00        DCB              0x00, 0xFF, 0x00
+   55 00000045 00 FF 00        DCB              0x00, 0xFF, 0x00
+   56 00000048 00 FF 00        DCB              0x00, 0xFF, 0x00
+   57 0000004B 00 FF 00        DCB              0x00, 0xFF, 0x00
+   58 0000004E 00 FF 00        DCB              0x00, 0xFF, 0x00
+   59 00000051 00 FF 00        DCB              0x00, 0xFF, 0x00
+   60 00000054 00 FF 00        DCB              0x00, 0xFF, 0x00
+   61 00000057 00 FF 00        DCB              0x00, 0xFF, 0x00
+   62 0000005A 00 FF 00        DCB              0x00, 0xFF, 0x00
+   63 0000005D FF FF 00        DCB              0xFF, 0xFF, 0x00
    64 00000060                 END
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\lumiere.d -o.\objects\lumiere.o -I.\RTE\Device\STM32F107
-VC -I.\RTE\_R_el -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Inc
-lude -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include --
-predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISIO
-N_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_CL SETA 1
-" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_CL SETA 1" --list=.\listing
-s\lumiere.lst Lumiere.asm
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\lumiere.d -o.\objects\lumiere.o -I.\RTE\Device\STM32F103RB -I.\RTE
+\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\In
+clude -IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\
+Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine
+="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="STM32F10X
+_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list
+=.\listings\lumiere.lst Lumiere.asm
 
 
 

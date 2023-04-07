@@ -33,6 +33,8 @@
 ;*******************************************************************************
 
 
+M		EQU 10
+
 ;*******************************************************************************
 	AREA  mesdonnees, data, readwrite
 
@@ -56,6 +58,9 @@ main  	PROC
 		MOV R0,#1
 		BL Init_Cible;			;Initialisation de la cible
 		
+		
+		
+Clignotement
 	
 		
 		;BL Driverglobal
@@ -65,8 +70,27 @@ main  	PROC
 		;Tempo
 		MOV R0, #500
 		BL Tempo
-
 		
+		;BL Driverglobal
+		LDR R0, =Barrette1
+		BL DriverReg
+		
+		;Tempo
+		MOV R0, #500
+		BL Tempo
+		
+		LDR  R6 ,= GPIOBASEA
+		LDR  R6, [R6, #OffsetInput]
+		AND R6, R6, #0x0100
+		CMP R6, #0x0100
+		BNE Fin
+		ADD R12, R12, #1
+		CMP R12, #M
+		BNE Clignotement
+		
+		
+
+Fin
 		
 		B .			 ; boucle inifinie terminale...
 

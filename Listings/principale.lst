@@ -153,41 +153,41 @@ ARM Macro Assembler    Page 3
    26 00000000         
    27 00000000         Barrette1
    28 00000000 FF 00 00        DCB              0xFF, 0x00, 0x00
-   29 00000003 00 00 00        DCB              0x00, 0x00, 0x00
-   30 00000006 00 00 00        DCB              0x00, 0x00, 0x00
-   31 00000009 00 00 00        DCB              0x00, 0x00, 0x00
-   32 0000000C 00 00 00        DCB              0x00, 0x00, 0x00
-   33 0000000F 00 00 00        DCB              0x00, 0x00, 0x00
-   34 00000012 00 00 00        DCB              0x00, 0x00, 0x00
-   35 00000015 00 00 00        DCB              0x00, 0x00, 0x00
-   36 00000018 00 00 FF        DCB              0x00, 0x00, 0xFF
-   37 0000001B 00 00 00        DCB              0x00, 0x00, 0x00
-   38 0000001E 00 00 00        DCB              0x00, 0x00, 0x00
-   39 00000021 00 00 00        DCB              0x00, 0x00, 0x00
-   40 00000024 00 00 00        DCB              0x00, 0x00, 0x00
-   41 00000027 00 00 00        DCB              0x00, 0x00, 0x00
-   42 0000002A 00 00 00        DCB              0x00, 0x00, 0x00
-   43 0000002D 00 FF 00        DCB              0x00, 0xFF, 0x00
+   29 00000003 FF 00 00        DCB              0xFF, 0x00, 0x00
+   30 00000006 FF 00 00        DCB              0xFF, 0x00, 0x00
+   31 00000009 FF 00 00        DCB              0xFF, 0x00, 0x00
+   32 0000000C FF 00 00        DCB              0xFF, 0x00, 0x00
+   33 0000000F FF 00 00        DCB              0xFF, 0x00, 0x00
+   34 00000012 FF 00 00        DCB              0xFF, 0x00, 0x00
+   35 00000015 FF 00 00        DCB              0xFF, 0x00, 0x00
+   36 00000018 FF 00 00        DCB              0xFF, 0x00, 0x00
+   37 0000001B FF 00 00        DCB              0xFF, 0x00, 0x00
+   38 0000001E FF 00 00        DCB              0xFF, 0x00, 0x00
+   39 00000021 FF 00 00        DCB              0xFF, 0x00, 0x00
+   40 00000024 FF 00 00        DCB              0xFF, 0x00, 0x00
+   41 00000027 FF 00 00        DCB              0xFF, 0x00, 0x00
+   42 0000002A FF 00 00        DCB              0xFF, 0x00, 0x00
+   43 0000002D FF 00 00        DCB              0xFF, 0x00, 0x00
    44 00000030         
    45 00000030         
    46 00000030         
    47 00000030         BarretteN
-   48 00000030 FF 00 00        DCB              0xFF, 0x00, 0x00
-   49 00000033 00 00 00        DCB              0x00, 0x00, 0x00
-   50 00000036 00 00 00        DCB              0x00, 0x00, 0x00
-   51 00000039 00 00 00        DCB              0x00, 0x00, 0x00
-   52 0000003C 00 00 00        DCB              0x00, 0x00, 0x00
-   53 0000003F 00 00 00        DCB              0x00, 0x00, 0x00
-   54 00000042 00 00 00        DCB              0x00, 0x00, 0x00
-   55 00000045 FF 00 00        DCB              0xFF, 0x00, 0x00
-   56 00000048 00 00 00        DCB              0x00, 0x00, 0x00
-   57 0000004B 00 00 00        DCB              0x00, 0x00, 0x00
-   58 0000004E 00 00 00        DCB              0x00, 0x00, 0x00
-   59 00000051 00 00 00        DCB              0x00, 0x00, 0x00
-   60 00000054 00 00 00        DCB              0x00, 0x00, 0x00
-   61 00000057 00 00 00        DCB              0x00, 0x00, 0x00
-   62 0000005A 00 00 00        DCB              0x00, 0x00, 0x00
-   63 0000005D FF 00 00        DCB              0xFF, 0x00, 0x00
+   48 00000030 00 FF 00        DCB              0x00, 0xFF, 0x00
+   49 00000033 00 FF 00        DCB              0x00, 0xFF, 0x00
+   50 00000036 00 FF 00        DCB              0x00, 0xFF, 0x00
+   51 00000039 00 FF 00        DCB              0x00, 0xFF, 0x00
+   52 0000003C 00 FF 00        DCB              0x00, 0xFF, 0x00
+   53 0000003F 00 FF 00        DCB              0x00, 0xFF, 0x00
+   54 00000042 00 FF 00        DCB              0x00, 0xFF, 0x00
+   55 00000045 00 FF 00        DCB              0x00, 0xFF, 0x00
+   56 00000048 00 FF 00        DCB              0x00, 0xFF, 0x00
+   57 0000004B 00 FF 00        DCB              0x00, 0xFF, 0x00
+   58 0000004E 00 FF 00        DCB              0x00, 0xFF, 0x00
+   59 00000051 00 FF 00        DCB              0x00, 0xFF, 0x00
+   60 00000054 00 FF 00        DCB              0x00, 0xFF, 0x00
+   61 00000057 00 FF 00        DCB              0x00, 0xFF, 0x00
+   62 0000005A 00 FF 00        DCB              0x00, 0xFF, 0x00
+   63 0000005D FF FF 00        DCB              0xFF, 0xFF, 0x00
    64 00000060                 END
     9 00000060         
    10 00000060         
@@ -226,68 +226,95 @@ WEAK]
                        ************************
    34 00000060         
    35 00000060         
-   36 00000060         ;*******************************************************
+   36 00000060 0000000A 
+                       M       EQU              10
+   37 00000060         
+   38 00000060         ;*******************************************************
                        ************************
-   37 00000060                 AREA             mesdonnees, data, readwrite
-   38 00000000         
-   39 00000000         
+   39 00000060                 AREA             mesdonnees, data, readwrite
    40 00000000         
    41 00000000         
-   42 00000000         ;*******************************************************
-                       ************************
+   42 00000000         
    43 00000000         
-   44 00000000                 AREA             moncode, code, readonly
-   45 00000060         
-   46 00000060         
-   47 00000060         
-   48 00000060         ;*******************************************************
+   44 00000000         ;*******************************************************
                        ************************
-   49 00000060         ; Procédure principale et point d'entr?e du projet
+   45 00000000         
+   46 00000000                 AREA             moncode, code, readonly
+   47 00000060         
+   48 00000060         
+   49 00000060         
    50 00000060         ;*******************************************************
                        ************************
-   51 00000060         main    PROC
+   51 00000060         ; Procédure principale et point d'entr?e du projet
    52 00000060         ;*******************************************************
                        ************************
-   53 00000060         
-   54 00000060         
+   53 00000060         main    PROC
+   54 00000060         ;*******************************************************
+                       ************************
    55 00000060         
-   56 00000060 F04F 0001       MOV              R0,#1
-   57 00000064 F7FF FFFE       BL               Init_Cible  ;   ;Initialisation
+   56 00000060         
+   57 00000060         
+   58 00000060 F04F 0001       MOV              R0,#1
+   59 00000064 F7FF FFFE       BL               Init_Cible  ;   ;Initialisation
                                                              de la cible
-   58 00000068         
-   59 00000068         ;Tempo
-   60 00000068 F04F 000A       MOV              R0, #10
-   61 0000006C F7FF FFFE       BL               Tempo
+   60 00000068         
 
 
 
 ARM Macro Assembler    Page 5 
 
 
-   62 00000070         
-   63 00000070         
-   64 00000070         ;BL Driverglobal
-   65 00000070         
-   66 00000070 4801            LDR              R0, =BarretteN
-   67 00000072 F7FF FFFE       BL               DriverReg
-   68 00000076         
-   69 00000076         
-   70 00000076         
-   71 00000076 E7FE            B                .           ; boucle inifinie t
+   61 00000068         
+   62 00000068         
+   63 00000068         Clignotement
+   64 00000068         
+   65 00000068         
+   66 00000068         ;BL Driverglobal
+   67 00000068 480D            LDR              R0, =BarretteN
+   68 0000006A F7FF FFFE       BL               DriverReg
+   69 0000006E         
+   70 0000006E         ;Tempo
+   71 0000006E F44F 70FA       MOV              R0, #500
+   72 00000072 F7FF FFFE       BL               Tempo
+   73 00000076         
+   74 00000076         ;BL Driverglobal
+   75 00000076 480B            LDR              R0, =Barrette1
+   76 00000078 F7FF FFFE       BL               DriverReg
+   77 0000007C         
+   78 0000007C         ;Tempo
+   79 0000007C F44F 70FA       MOV              R0, #500
+   80 00000080 F7FF FFFE       BL               Tempo
+   81 00000084         
+   82 00000084 4E08            LDR              R6 ,= GPIOBASEA
+   83 00000086 68B6            LDR              R6, [R6, #OffsetInput]
+   84 00000088 F406 7680       AND              R6, R6, #0x0100
+   85 0000008C F5B6 7F80       CMP              R6, #0x0100
+   86 00000090 D104            BNE              Fin
+   87 00000092 F10C 0C01       ADD              R12, R12, #1
+   88 00000096 F1BC 0F0A       CMP              R12, #M
+   89 0000009A D1E5            BNE              Clignotement
+   90 0000009C         
+   91 0000009C         
+   92 0000009C         
+   93 0000009C         Fin
+   94 0000009C         
+   95 0000009C E7FE            B                .           ; boucle inifinie t
                                                             erminale...
-   72 00000078         
-   73 00000078                 ENDP
-   74 00000078         
-   75 00000078                 END
+   96 0000009E         
+   97 0000009E                 ENDP
+   98 0000009E         
+   99 0000009E                 END
+              00 00 00000000 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\principale.d -o.\objects\principale.o -I.\RTE\Device\STM
-32F107VC -I.\RTE\_R_el -IC:\Programdata\Keil\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Co
-re\Include -IC:\Programdata\Keil\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Incl
-ude --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__
-UVISION_VERSION SETA 534" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_CL 
-SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_CL SETA 1" --list=.\l
-istings\principale.lst Principale.asm
+              40010800 
+Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M3 --depe
+nd=.\objects\principale.d -o.\objects\principale.o -I.\RTE\Device\STM32F103RB -
+I.\RTE\_Simul_ -IC:\Users\cedri\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\C
+ore\Include -IC:\Users\cedri\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\D
+evice\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --pre
+define="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --predefine="STM
+32F10X_MD SETA 1" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" 
+--list=.\listings\principale.lst Principale.asm
 
 
 
@@ -315,21 +342,37 @@ Symbol: Barrette1
    Definitions
       At line 27 in file Lumiere.asm
    Uses
-      None
-Comment: Barrette1 unused
+      At line 75 in file Principale.asm
+Comment: Barrette1 used once
 BarretteN 00000030
 
 Symbol: BarretteN
    Definitions
       At line 47 in file Lumiere.asm
    Uses
-      At line 66 in file Principale.asm
+      At line 67 in file Principale.asm
 Comment: BarretteN used once
+Clignotement 00000068
+
+Symbol: Clignotement
+   Definitions
+      At line 63 in file Principale.asm
+   Uses
+      At line 89 in file Principale.asm
+Comment: Clignotement used once
+Fin 0000009C
+
+Symbol: Fin
+   Definitions
+      At line 93 in file Principale.asm
+   Uses
+      At line 86 in file Principale.asm
+Comment: Fin used once
 main 00000060
 
 Symbol: main
    Definitions
-      At line 51 in file Principale.asm
+      At line 53 in file Principale.asm
    Uses
       At line 31 in file Principale.asm
 Comment: main used once
@@ -341,7 +384,7 @@ Symbol: moncode
    Uses
       None
 Comment: moncode unused
-4 symbols
+6 symbols
 
 
 
@@ -352,7 +395,7 @@ mesdonnees 00000000
 
 Symbol: mesdonnees
    Definitions
-      At line 37 in file Principale.asm
+      At line 39 in file Principale.asm
    Uses
       None
 Comment: mesdonnees unused
@@ -369,8 +412,8 @@ Symbol: GPIOBASEA
    Definitions
       At line 24 in file REG_UTILES.inc
    Uses
-      None
-Comment: GPIOBASEA unused
+      At line 82 in file Principale.asm
+Comment: GPIOBASEA used once
 GPIOBASEB 40010C00
 
 Symbol: GPIOBASEB
@@ -379,6 +422,14 @@ Symbol: GPIOBASEB
    Uses
       None
 Comment: GPIOBASEB unused
+M 0000000A
+
+Symbol: M
+   Definitions
+      At line 36 in file Principale.asm
+   Uses
+      At line 88 in file Principale.asm
+Comment: M used once
 MILSEC 000000EF
 
 Symbol: MILSEC
@@ -414,6 +465,12 @@ Comment: MaskGsclk unused
 MaskSclk 00000020
 
 Symbol: MaskSclk
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Absolute symbols
+
    Definitions
       At line 38 in file REG_UTILES.inc
    Uses
@@ -422,12 +479,6 @@ Comment: MaskSclk unused
 MaskSerial_Dots 00000080
 
 Symbol: MaskSerial_Dots
-
-
-
-ARM Macro Assembler    Page 2 Alphabetic symbol ordering
-Absolute symbols
-
    Definitions
       At line 34 in file REG_UTILES.inc
    Uses
@@ -463,8 +514,8 @@ Symbol: OffsetInput
    Definitions
       At line 27 in file REG_UTILES.inc
    Uses
-      None
-Comment: OffsetInput unused
+      At line 83 in file Principale.asm
+Comment: OffsetInput used once
 OffsetOutput 0000000C
 
 Symbol: OffsetOutput
@@ -479,6 +530,12 @@ Symbol: OffsetReset
    Definitions
       At line 30 in file REG_UTILES.inc
    Uses
+
+
+
+ARM Macro Assembler    Page 3 Alphabetic symbol ordering
+Absolute symbols
+
       None
 Comment: OffsetReset unused
 OffsetSet 00000010
@@ -487,12 +544,6 @@ Symbol: OffsetSet
    Definitions
       At line 29 in file REG_UTILES.inc
    Uses
-
-
-
-ARM Macro Assembler    Page 3 Alphabetic symbol ordering
-Absolute symbols
-
       None
 Comment: OffsetSet unused
 SCB_VTOR E000ED08
@@ -535,7 +586,7 @@ Symbol: TIM4_SR
    Uses
       None
 Comment: TIM4_SR unused
-20 symbols
+21 symbols
 
 
 
@@ -548,8 +599,9 @@ Symbol: DriverReg
    Definitions
       At line 22 in file Principale.asm
    Uses
-      At line 67 in file Principale.asm
-Comment: DriverReg used once
+      At line 68 in file Principale.asm
+      At line 76 in file Principale.asm
+
 Driverglobal 00000000
 
 Symbol: Driverglobal
@@ -564,7 +616,7 @@ Symbol: Init_Cible
    Definitions
       At line 20 in file Principale.asm
    Uses
-      At line 57 in file Principale.asm
+      At line 59 in file Principale.asm
 Comment: Init_Cible used once
 Reset_SCLK 00000000
 
@@ -600,18 +652,19 @@ Symbol: Set_SIN
 Comment: Set_SIN unused
 Tempo 00000000
 
-Symbol: Tempo
 
 
 
 ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 External symbols
 
+Symbol: Tempo
    Definitions
       At line 27 in file Principale.asm
    Uses
-      At line 61 in file Principale.asm
-Comment: Tempo used once
+      At line 72 in file Principale.asm
+      At line 80 in file Principale.asm
+
 |Lib$$Request$$armlib| 00000000
 
 Symbol: |Lib$$Request$$armlib|
@@ -621,4 +674,4 @@ Symbol: |Lib$$Request$$armlib|
       None
 Comment: |Lib$$Request$$armlib| unused
 9 symbols
-372 symbols in table
+375 symbols in table
