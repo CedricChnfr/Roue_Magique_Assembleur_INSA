@@ -21,22 +21,23 @@ ARM Macro Assembler    Page 1
    12 00000000         ;***************IMPORT/EXPORT***************************
                        *******************
    13 00000000                 EXPORT           Driverglobal
-   14 00000000                 EXPORT           Set_SCLK
-   15 00000000                 EXPORT           Reset_SCLK
-   16 00000000                 EXPORT           Set_SIN
-   17 00000000                 EXPORT           Reset_SIN
-   18 00000000                 EXPORT           Tempo
-   19 00000000                 IMPORT           DataSend
-   20 00000000         
-   21 00000000         ;*******************************************************
+   14 00000000                 EXPORT           DriverReg
+   15 00000000                 EXPORT           Set_SCLK
+   16 00000000                 EXPORT           Reset_SCLK
+   17 00000000                 EXPORT           Set_SIN
+   18 00000000                 EXPORT           Reset_SIN
+   19 00000000                 EXPORT           Tempo
+   20 00000000                 IMPORT           DataSend
+   21 00000000         
+   22 00000000         ;*******************************************************
                        *******************
-   22 00000000         
    23 00000000         
    24 00000000         
-   25 00000000         ;***************CONSTANTES******************************
+   25 00000000         
+   26 00000000         ;***************CONSTANTES******************************
                        *******************
-   26 00000000         
-   27 00000000                 include          REG_UTILES.inc
+   27 00000000         
+   28 00000000                 include          REG_UTILES.inc
     1 00000000         
     2 00000000         ;**************************************
     3 00000000         ;     Les adresess utiles  
@@ -62,13 +63,13 @@ ARM Macro Assembler    Page 1
    23 00000000         
    24 00000000 40010800 
                        GPIOBASEA
-                               EQU              0X40010800
 
 
 
 ARM Macro Assembler    Page 2 
 
 
+                               EQU              0X40010800
    25 00000000 40010C00 
                        GPIOBASEB
                                EQU              0X40010C00
@@ -127,13 +128,13 @@ ARM Macro Assembler    Page 2
    47 00000000 40000810 
                        TIM4_SR EQU              0x40000810
    48 00000000         
-   49 00000000 000000EF 
 
 
 
 ARM Macro Assembler    Page 3 
 
 
+   49 00000000 000000EF 
                        MILSEC  EQU              239
    50 00000000         
    51 00000000         
@@ -141,7 +142,7 @@ ARM Macro Assembler    Page 3
    53 00000000         
    54 00000000         
    55 00000000                 END
-   28 00000000                 include          Lumiere.asm
+   29 00000000                 include          Lumiere.asm
     1 00000000         ;*******************************************************
                        ********************
     2 00000000                 THUMB
@@ -172,237 +173,312 @@ ARM Macro Assembler    Page 3
    21 00000000         
    22 00000000         
    23 00000000         
-   24 00000000         ;AREA Lumiere, data, readwrite
-   25 00000000         
-   26 00000000         ;SPACE      48          Réservation de 48 octets pour la
-                        variable Barrette1
-   27 00000000         ;Barrette1 DCB 48 dup(0)   ; Initialiser à 0 
-   28 00000000         
-   29 00000000         Barrette1
-   30 00000000 FF 00 00        DCB              0xFF, 0x00, 0x00
-   31 00000003 00 00 00        DCB              0x00, 0x00, 0x00
-   32 00000006 00 00 00        DCB              0x00, 0x00, 0x00
-   33 00000009 00 00 00        DCB              0x00, 0x00, 0x00
-   34 0000000C 00 00 00        DCB              0x00, 0x00, 0x00
-   35 0000000F 00 00 00        DCB              0x00, 0x00, 0x00
-   36 00000012 00 00 00        DCB              0x00, 0x00, 0x00
-   37 00000015 00 00 00        DCB              0x00, 0x00, 0x00
-   38 00000018 00 00 FF        DCB              0x00, 0x00, 0xFF
-   39 0000001B 00 00 00        DCB              0x00, 0x00, 0x00
-   40 0000001E 00 00 00        DCB              0x00, 0x00, 0x00
-   41 00000021 00 00 00        DCB              0x00, 0x00, 0x00
-   42 00000024 00 00 00        DCB              0x00, 0x00, 0x00
-   43 00000027 00 00 00        DCB              0x00, 0x00, 0x00
+   24 00000000         
+   25 00000000         ;Barrette1 DCB 48 dup(0)   ; Initialiser à 0 
+   26 00000000         
+   27 00000000         Barrette1
+   28 00000000 FF 00 00        DCB              0xFF, 0x00, 0x00
+   29 00000003 00 00 00        DCB              0x00, 0x00, 0x00
+   30 00000006 00 00 00        DCB              0x00, 0x00, 0x00
+   31 00000009 00 00 00        DCB              0x00, 0x00, 0x00
+   32 0000000C 00 00 00        DCB              0x00, 0x00, 0x00
+   33 0000000F 00 00 00        DCB              0x00, 0x00, 0x00
+   34 00000012 00 00 00        DCB              0x00, 0x00, 0x00
+   35 00000015 00 00 00        DCB              0x00, 0x00, 0x00
+   36 00000018 00 00 FF        DCB              0x00, 0x00, 0xFF
+   37 0000001B 00 00 00        DCB              0x00, 0x00, 0x00
+   38 0000001E 00 00 00        DCB              0x00, 0x00, 0x00
+   39 00000021 00 00 00        DCB              0x00, 0x00, 0x00
+   40 00000024 00 00 00        DCB              0x00, 0x00, 0x00
+   41 00000027 00 00 00        DCB              0x00, 0x00, 0x00
+   42 0000002A 00 00 00        DCB              0x00, 0x00, 0x00
+   43 0000002D 00 FF 00        DCB              0x00, 0xFF, 0x00
 
 
 
 ARM Macro Assembler    Page 4 
 
 
-   44 0000002A 00 00 00        DCB              0x00, 0x00, 0x00
-   45 0000002D 00 FF 00        DCB              0x00, 0xFF, 0x00
-   46 00000030                 END
-   29 00000030         ;AREA MesConstantes, data, readwrite
-   30 00000030         
-   31 00000030         
-   32 00000030         
-   33 00000030         
-   34 00000030         
-   35 00000030         
-   36 00000030         
-   37 00000030         ;*******************************************************
+   44 00000030         
+   45 00000030         
+   46 00000030         
+   47 00000030         BarretteN
+   48 00000030 FF 00 00        DCB              0xFF, 0x00, 0x00
+   49 00000033 00 00 00        DCB              0x00, 0x00, 0x00
+   50 00000036 00 00 00        DCB              0x00, 0x00, 0x00
+   51 00000039 00 00 00        DCB              0x00, 0x00, 0x00
+   52 0000003C 00 00 00        DCB              0x00, 0x00, 0x00
+   53 0000003F 00 00 00        DCB              0x00, 0x00, 0x00
+   54 00000042 00 00 00        DCB              0x00, 0x00, 0x00
+   55 00000045 FF 00 00        DCB              0xFF, 0x00, 0x00
+   56 00000048 00 00 00        DCB              0x00, 0x00, 0x00
+   57 0000004B 00 00 00        DCB              0x00, 0x00, 0x00
+   58 0000004E 00 00 00        DCB              0x00, 0x00, 0x00
+   59 00000051 00 00 00        DCB              0x00, 0x00, 0x00
+   60 00000054 00 00 00        DCB              0x00, 0x00, 0x00
+   61 00000057 00 00 00        DCB              0x00, 0x00, 0x00
+   62 0000005A 00 00 00        DCB              0x00, 0x00, 0x00
+   63 0000005D FF 00 00        DCB              0xFF, 0x00, 0x00
+   64 00000060                 END
+   30 00000060         ;AREA MesConstantes, data, readwrite
+   31 00000060         
+   32 00000060         
+   33 00000060         
+   34 00000060         
+   35 00000060         
+   36 00000060         
+   37 00000060         
+   38 00000060         ;*******************************************************
                        *******************
-   38 00000030         
-   39 00000030         
-   40 00000030         ;***************VARIABLES*******************************
+   39 00000060         
+   40 00000060         
+   41 00000060         ;***************VARIABLES*******************************
                        *******************
-   41 00000030                 AREA             MesDonnees, data, readwrite
-   42 00000000         ;*******************************************************
+   42 00000060                 AREA             MesDonnees, data, readwrite
+   43 00000000         ;*******************************************************
                        *******************
-   43 00000000         
    44 00000000         
    45 00000000         
-   46 00000000         ;*******************************************************
+   46 00000000         
+   47 00000000         ;*******************************************************
                        *******************
-   47 00000000         
    48 00000000         
    49 00000000         
-   50 00000000         ;***************CODE************************************
+   50 00000000         
+   51 00000000         ;***************CODE************************************
                        *******************
-   51 00000000                 AREA             moncode, code, readonly
-   52 00000030         ;*******************************************************
+   52 00000000                 AREA             moncode, code, readonly
+   53 00000060         ;*******************************************************
                        *******************
-   53 00000030         
-   54 00000030         
-   55 00000030         
-   56 00000030         
-   57 00000030         
-   58 00000030         ;#######################################################
+   54 00000060         
+   55 00000060         
+   56 00000060         
+   57 00000060         
+   58 00000060         
+   59 00000060         ;#######################################################
                        #################
-   59 00000030         ; Procédure ????
-   60 00000030         ;#######################################################
-                       #################
-   61 00000030         
-   62 00000030         
-   63 00000030         ;Fonction permettant d'envoyer en série les 576 bits du 
-                       tableau
-   64 00000030         Driverglobal
-                               PROC
-   65 00000030 F7FF FFFE       BL               Set_SCLK    ; Set(SCLK)
-   66 00000034 F04F 0101       MOV              R1, #1      ; Initialisation du
-                                                             compteur de LED ? 
-                                                            1
-   67 00000038         
-   68 00000038         BoucleLed
-   69 00000038 4F29            LDR              R7 ,=Barrette1 ; On load les va
-                                                            leur de la barette 
-                                                            dans R7
-   70 0000003A 5C7B            LDRB             R3, [R7, R1] ; R3 = ValCourante
+   60 00000060         ; Procédure ????
 
 
 
 ARM Macro Assembler    Page 5 
 
 
+   61 00000060         ;#######################################################
+                       #################
+   62 00000060         
+   63 00000060         
+   64 00000060         ;Fonction permettant d'envoyer en série les 576 bits du 
+                       tableau
+   65 00000060         Driverglobal
+                               PROC
+   66 00000060 F7FF FFFE       BL               Set_SCLK    ; Set(SCLK)
+   67 00000064 F04F 0101       MOV              R1, #1      ; Initialisation du
+                                                             compteur de LED ? 
+                                                            1
+   68 00000068         
+   69 00000068         BoucleLed
+   70 00000068 4F3E            LDR              R7 ,=Barrette1 ; On load les va
+                                                            leur de la barette 
+                                                            dans R7
+   71 0000006A 5C7B            LDRB             R3, [R7, R1] ; R3 = ValCourante
                                                             , On met la valeur 
                                                             de Barette[n] dans 
                                                             R3
-   71 0000003C EA4F 6403       LSL              R4, R3, #24 ; (ValCourante) <- 
+   72 0000006C EA4F 6403       LSL              R4, R3, #24 ; (ValCourante) <- 
                                                             (ValCourante) << 24
                                                             
-   72 00000040         
-   73 00000040 F04F 0500       MOV              R5, #0
-   74 00000044         
-   75 00000044         BoucleBit
-   76 00000044 F7FF FFFE       BL               Reset_SCLK
-   77 00000048         
-   78 00000048 F014 4F00       TST              R4, #(0x1<<31) ; Compare le bit
+   73 00000070         
+   74 00000070 F04F 0500       MOV              R5, #0
+   75 00000074         
+   76 00000074         BoucleBit
+   77 00000074 F7FF FFFE       BL               Reset_SCLK
+   78 00000078         
+   79 00000078 F014 4F00       TST              R4, #(0x1<<31) ; Compare le bit
                                                              de poid fort 32eme
                                                             
-   79 0000004C D102            BNE              Bit1
-   80 0000004E F7FF FFFE       BL               Reset_SIN
-   81 00000052 E001            B                NextBit
-   82 00000054         
-   83 00000054         Bit1
-   84 00000054 F7FF FFFE       BL               Set_SIN
-   85 00000058         
-   86 00000058         NextBit
-   87 00000058 EA4F 0444       LSL              R4, R4, #1
-   88 0000005C F7FF FFFE       BL               Set_SCLK
-   89 00000060         
-   90 00000060 F105 0501       ADD              R5, R5, #1  ; i++
-   91 00000064 2D0C            CMP              R5, #12
-   92 00000066 D1ED            BNE              BoucleBit
-   93 00000068         
-   94 00000068 F101 0101       ADD              R1, R1, #1
-   95 0000006C 2930            CMP              R1, #48
-   96 0000006E D1E3            BNE              BoucleLed
-   97 00000070         
-   98 00000070 F7FF FFFE       BL               Reset_SCLK
-   99 00000074         
-  100 00000074 F8DF 806C       LDR              R8 ,=DataSend
-  101 00000078 F04F 0900       MOV              R9, #0
-  102 0000007C F888 9000       STRB             R9, [R8]
-  103 00000080         ;MOV DataSend, #0
-  104 00000080         
-  105 00000080 4770            BX               LR
-  106 00000082                 ENDP
-  107 00000082         
-  108 00000082         
-  109 00000082         ; Procédure Set: envoie un signal HIGH au registre de do
-                       nn?es
-  110 00000082         Set_SCLK
-                               PROC
-  111 00000082 B403            PUSH             {R0, R1}
-  112 00000084 4818            LDR              R0, =GPIOBASEA
-  113 00000086 8A01            LDRH             R1,[R0,#OffsetSet]
-  114 00000088 F04F 0120       MOV              R1,#(0x01 << 5)
-  115 0000008C 8201            STRH             R1, [R0, #OffsetSet]
-  116 0000008E BC03            POP              {R0, R1}
-  117 00000090 4770            BX               LR
-  118 00000092                 ENDP
-  119 00000092         
-  120 00000092         ; Proc?dure Reset: envoie un signal LOW au registre de d
+   80 0000007C D102            BNE              Bit1
+   81 0000007E F7FF FFFE       BL               Reset_SIN
+   82 00000082 E001            B                NextBit
+   83 00000084         
+   84 00000084         Bit1
+   85 00000084 F7FF FFFE       BL               Set_SIN
+   86 00000088         
+   87 00000088         NextBit
+   88 00000088 EA4F 0444       LSL              R4, R4, #1
+   89 0000008C F7FF FFFE       BL               Set_SCLK
+   90 00000090         
+   91 00000090 F105 0501       ADD              R5, R5, #1  ; i++
+   92 00000094 2D0C            CMP              R5, #12
+   93 00000096 D1ED            BNE              BoucleBit
+   94 00000098         
+   95 00000098 F101 0101       ADD              R1, R1, #1
+   96 0000009C 2930            CMP              R1, #48
+   97 0000009E D1E3            BNE              BoucleLed
+   98 000000A0         
+   99 000000A0 F7FF FFFE       BL               Reset_SCLK
+  100 000000A4         
+  101 000000A4 F8DF 80C0       LDR              R8 ,=DataSend
+  102 000000A8 F04F 0900       MOV              R9, #0
+  103 000000AC F888 9000       STRB             R9, [R8]
+  104 000000B0         ;MOV DataSend, #0
+  105 000000B0         
 
 
 
 ARM Macro Assembler    Page 6 
 
 
+  106 000000B0 4770            BX               LR
+  107 000000B2                 ENDP
+  108 000000B2         
+  109 000000B2         
+  110 000000B2         ; Procédure Set: envoie un signal HIGH au registre de do
+                       nn?es
+  111 000000B2         Set_SCLK
+                               PROC
+  112 000000B2 B403            PUSH             {R0, R1}
+  113 000000B4 482D            LDR              R0, =GPIOBASEA
+  114 000000B6 8A01            LDRH             R1,[R0,#OffsetSet]
+  115 000000B8 F04F 0120       MOV              R1,#(0x01 << 5)
+  116 000000BC 8201            STRH             R1, [R0, #OffsetSet]
+  117 000000BE BC03            POP              {R0, R1}
+  118 000000C0 4770            BX               LR
+  119 000000C2                 ENDP
+  120 000000C2         
+  121 000000C2         ; Proc?dure Reset: envoie un signal LOW au registre de d
                        onn?es
-  121 00000092         Reset_SCLK
+  122 000000C2         Reset_SCLK
                                PROC
-  122 00000092 B403            PUSH             {R0, R1}
-  123 00000094 4814            LDR              R0, =GPIOBASEA
-  124 00000096 8A81            LDRH             R1,[R0,#OffsetReset]
-  125 00000098 F04F 0120       MOV              R1,#(0x01 << 5)
-  126 0000009C 8281            STRH             R1, [R0, #OffsetReset]
-  127 0000009E BC03            POP              {R0, R1}
-  128 000000A0 4770            BX               LR
-  129 000000A2                 ENDP
-  130 000000A2         
-  131 000000A2         Set_SIN PROC
-  132 000000A2 B403            PUSH             {R0, R1}
-  133 000000A4 4810            LDR              R0, = GPIOBASEA
-  134 000000A6 8A01            LDRH             R1,[R0,#OffsetSet]
-  135 000000A8 F04F 0180       MOV              R1,#(0x01 << 7)
-  136 000000AC 8201            STRH             R1, [R0, #OffsetSet]
-  137 000000AE BC03            POP              {R0, R1}
-  138 000000B0 4770            BX               LR
-  139 000000B2                 ENDP
-  140 000000B2         
-  141 000000B2         ; Proc?dure Reset: envoie un signal LOW au registre de d
+  123 000000C2 B403            PUSH             {R0, R1}
+  124 000000C4 4829            LDR              R0, =GPIOBASEA
+  125 000000C6 8A81            LDRH             R1,[R0,#OffsetReset]
+  126 000000C8 F04F 0120       MOV              R1,#(0x01 << 5)
+  127 000000CC 8281            STRH             R1, [R0, #OffsetReset]
+  128 000000CE BC03            POP              {R0, R1}
+  129 000000D0 4770            BX               LR
+  130 000000D2                 ENDP
+  131 000000D2         
+  132 000000D2         Set_SIN PROC
+  133 000000D2 B403            PUSH             {R0, R1}
+  134 000000D4 4825            LDR              R0, = GPIOBASEA
+  135 000000D6 8A01            LDRH             R1,[R0,#OffsetSet]
+  136 000000D8 F04F 0180       MOV              R1,#(0x01 << 7)
+  137 000000DC 8201            STRH             R1, [R0, #OffsetSet]
+  138 000000DE BC03            POP              {R0, R1}
+  139 000000E0 4770            BX               LR
+  140 000000E2                 ENDP
+  141 000000E2         
+  142 000000E2         ; Proc?dure Reset: envoie un signal LOW au registre de d
                        onn?es
-  142 000000B2         Reset_SIN
+  143 000000E2         Reset_SIN
                                PROC
-  143 000000B2 B403            PUSH             {R0, R1}
-  144 000000B4 480C            LDR              R0, =GPIOBASEA
-  145 000000B6 8A81            LDRH             R1,[R0,#OffsetReset]
-  146 000000B8 F04F 0180       MOV              R1,#(0x01 << 7)
-  147 000000BC 8281            STRH             R1, [R0, #OffsetReset]
-  148 000000BE BC03            POP              {R0, R1}
-  149 000000C0 4770            BX               LR
-  150 000000C2                 ENDP
-  151 000000C2         
-  152 000000C2         
-  153 000000C2         ;R1, R6, R10, R11, R12
-  154 000000C2         ;Vérifier tempo
-  155 000000C2         Tempo   PROC
-  156 000000C2         
-  157 000000C2 F04F 0B00       MOV              R11, #0
-  158 000000C6         boucle_10N
-  159 000000C6 F04F 0A00       MOV              R10, #0
-  160 000000CA F10B 0B01       ADD              R11, R11, #1
-  161 000000CE 4583            CMP              R11, R0
-  162 000000D0 BF08 4770       BXEQ             LR
-  163 000000D4         
-  164 000000D4         boucle
-  165 000000D4 F10A 0A01       ADD              R10, R10, #1
-  166 000000D8 F1BA 0FEF       CMP              R10, #MILSEC
-  167 000000DC D1FA            BNE              boucle
-  168 000000DE         
-  169 000000DE D0F2            BEQ              boucle_10N
-  170 000000E0                 ENDP
-  171 000000E0         
-  172 000000E0         
-  173 000000E0         DriverReg
-                               PROC
-  174 000000E0         
+  144 000000E2 B403            PUSH             {R0, R1}
+  145 000000E4 4821            LDR              R0, =GPIOBASEA
+  146 000000E6 8A81            LDRH             R1,[R0,#OffsetReset]
+  147 000000E8 F04F 0180       MOV              R1,#(0x01 << 7)
+  148 000000EC 8281            STRH             R1, [R0, #OffsetReset]
+  149 000000EE BC03            POP              {R0, R1}
+  150 000000F0 4770            BX               LR
+  151 000000F2                 ENDP
+  152 000000F2         
+  153 000000F2         
+  154 000000F2         ;R1, R6, R10, R11, R12
+  155 000000F2         ;Vérifier tempo
+  156 000000F2         Tempo   PROC
+  157 000000F2         
+  158 000000F2 F04F 0B00       MOV              R11, #0
 
 
 
 ARM Macro Assembler    Page 7 
 
 
-  175 000000E0         
-  176 000000E0         
-  177 000000E0                 ENDP
-  178 000000E0         
-  179 000000E0         
-  180 000000E0         ;*******************************************************
+  159 000000F6         boucle_10N
+  160 000000F6 F04F 0A00       MOV              R10, #0
+  161 000000FA F10B 0B01       ADD              R11, R11, #1
+  162 000000FE 4583            CMP              R11, R0
+  163 00000100 BF08 4770       BXEQ             LR
+  164 00000104         
+  165 00000104         boucle
+  166 00000104 F10A 0A01       ADD              R10, R10, #1
+  167 00000108 F1BA 0FEF       CMP              R10, #MILSEC
+  168 0000010C D1FA            BNE              boucle
+  169 0000010E         
+  170 0000010E D0F2            BEQ              boucle_10N
+  171 00000110                 ENDP
+  172 00000110         
+  173 00000110         
+  174 00000110         
+  175 00000110         
+  176 00000110         
+  177 00000110         DriverReg
+                               PROC
+  178 00000110 F7FF FFFE       BL               Set_SCLK    ; Set(SCLK)
+  179 00000114 F04F 0101       MOV              R1, #1      ; Initialisation du
+                                                             compteur de LED ? 
+                                                            1
+  180 00000118         
+  181 00000118         BoucleLed2
+  182 00000118 4607            MOV              R7 ,R0      ; On load les valeu
+                                                            r de la barette dan
+                                                            s R7
+  183 0000011A 5C7B            LDRB             R3, [R7, R1] ; R3 = ValCourante
+                                                            , On met la valeur 
+                                                            de Barette[n] dans 
+                                                            R3
+  184 0000011C EA4F 6403       LSL              R4, R3, #24 ; (ValCourante) <- 
+                                                            (ValCourante) << 24
+                                                            
+  185 00000120         
+  186 00000120 F04F 0500       MOV              R5, #0
+  187 00000124         
+  188 00000124         BoucleBit2
+  189 00000124 F7FF FFFE       BL               Reset_SCLK
+  190 00000128         
+  191 00000128 F014 4F00       TST              R4, #(0x1<<31) ; Compare le bit
+                                                             de poid fort 32eme
+                                                            
+  192 0000012C D102            BNE              Bit2
+  193 0000012E F7FF FFFE       BL               Reset_SIN
+  194 00000132 E001            B                NextBit2
+  195 00000134         
+  196 00000134         Bit2
+  197 00000134 F7FF FFFE       BL               Set_SIN
+  198 00000138         
+  199 00000138         NextBit2
+  200 00000138 EA4F 0444       LSL              R4, R4, #1
+  201 0000013C F7FF FFFE       BL               Set_SCLK
+  202 00000140         
+  203 00000140 F105 0501       ADD              R5, R5, #1  ; i++
+  204 00000144 2D0C            CMP              R5, #12
+  205 00000146 D1ED            BNE              BoucleBit2
+
+
+
+ARM Macro Assembler    Page 8 
+
+
+  206 00000148         
+  207 00000148 F101 0101       ADD              R1, R1, #1
+  208 0000014C 2930            CMP              R1, #48
+  209 0000014E D1E3            BNE              BoucleLed2
+  210 00000150         
+  211 00000150 F7FF FFFE       BL               Reset_SCLK
+  212 00000154         
+  213 00000154 F8DF 8010       LDR              R8 ,=DataSend
+  214 00000158 F04F 0900       MOV              R9, #0
+  215 0000015C F888 9000       STRB             R9, [R8]
+  216 00000160         
+  217 00000160 4770            BX               LR
+  218 00000162         
+  219 00000162                 ENDP
+  220 00000162         
+  221 00000162         
+  222 00000162         ;*******************************************************
                        *******************
-  181 000000E0                 END
-              00000000 
+  223 00000162                 END
+              00 00 00000000 
               00000000 
               40010800 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
@@ -438,61 +514,61 @@ Barrette1 00000000
 
 Symbol: Barrette1
    Definitions
-      At line 29 in file Lumiere.asm
+      At line 27 in file Lumiere.asm
    Uses
-      At line 69 in file FonctionEtape2.asm
+      At line 70 in file FonctionEtape2.asm
 Comment: Barrette1 used once
-Bit1 00000054
+BarretteN 00000030
+
+Symbol: BarretteN
+   Definitions
+      At line 47 in file Lumiere.asm
+   Uses
+      None
+Comment: BarretteN unused
+Bit1 00000084
 
 Symbol: Bit1
    Definitions
-      At line 83 in file FonctionEtape2.asm
+      At line 84 in file FonctionEtape2.asm
    Uses
-      At line 79 in file FonctionEtape2.asm
+      At line 80 in file FonctionEtape2.asm
 Comment: Bit1 used once
-BoucleBit 00000044
+Bit2 00000134
+
+Symbol: Bit2
+   Definitions
+      At line 196 in file FonctionEtape2.asm
+   Uses
+      At line 192 in file FonctionEtape2.asm
+Comment: Bit2 used once
+BoucleBit 00000074
 
 Symbol: BoucleBit
    Definitions
-      At line 75 in file FonctionEtape2.asm
+      At line 76 in file FonctionEtape2.asm
    Uses
-      At line 92 in file FonctionEtape2.asm
+      At line 93 in file FonctionEtape2.asm
 Comment: BoucleBit used once
-BoucleLed 00000038
+BoucleBit2 00000124
+
+Symbol: BoucleBit2
+   Definitions
+      At line 188 in file FonctionEtape2.asm
+   Uses
+      At line 205 in file FonctionEtape2.asm
+Comment: BoucleBit2 used once
+BoucleLed 00000068
 
 Symbol: BoucleLed
    Definitions
-      At line 68 in file FonctionEtape2.asm
+      At line 69 in file FonctionEtape2.asm
    Uses
-      At line 96 in file FonctionEtape2.asm
+      At line 97 in file FonctionEtape2.asm
 Comment: BoucleLed used once
-DriverReg 000000E0
+BoucleLed2 00000118
 
-Symbol: DriverReg
-   Definitions
-      At line 173 in file FonctionEtape2.asm
-   Uses
-      None
-Comment: DriverReg unused
-Driverglobal 00000030
-
-Symbol: Driverglobal
-   Definitions
-      At line 64 in file FonctionEtape2.asm
-   Uses
-      At line 13 in file FonctionEtape2.asm
-Comment: Driverglobal used once
-NextBit 00000058
-
-Symbol: NextBit
-   Definitions
-      At line 86 in file FonctionEtape2.asm
-   Uses
-      At line 81 in file FonctionEtape2.asm
-Comment: NextBit used once
-Reset_SCLK 00000092
-
-Symbol: Reset_SCLK
+Symbol: BoucleLed2
 
 
 
@@ -500,70 +576,116 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 121 in file FonctionEtape2.asm
+      At line 181 in file FonctionEtape2.asm
    Uses
-      At line 15 in file FonctionEtape2.asm
-      At line 76 in file FonctionEtape2.asm
-      At line 98 in file FonctionEtape2.asm
+      At line 209 in file FonctionEtape2.asm
+Comment: BoucleLed2 used once
+DriverReg 00000110
 
-Reset_SIN 000000B2
+Symbol: DriverReg
+   Definitions
+      At line 177 in file FonctionEtape2.asm
+   Uses
+      At line 14 in file FonctionEtape2.asm
+Comment: DriverReg used once
+Driverglobal 00000060
+
+Symbol: Driverglobal
+   Definitions
+      At line 65 in file FonctionEtape2.asm
+   Uses
+      At line 13 in file FonctionEtape2.asm
+Comment: Driverglobal used once
+NextBit 00000088
+
+Symbol: NextBit
+   Definitions
+      At line 87 in file FonctionEtape2.asm
+   Uses
+      At line 82 in file FonctionEtape2.asm
+Comment: NextBit used once
+NextBit2 00000138
+
+Symbol: NextBit2
+   Definitions
+      At line 199 in file FonctionEtape2.asm
+   Uses
+      At line 194 in file FonctionEtape2.asm
+Comment: NextBit2 used once
+Reset_SCLK 000000C2
+
+Symbol: Reset_SCLK
+   Definitions
+      At line 122 in file FonctionEtape2.asm
+   Uses
+      At line 16 in file FonctionEtape2.asm
+      At line 77 in file FonctionEtape2.asm
+      At line 99 in file FonctionEtape2.asm
+      At line 189 in file FonctionEtape2.asm
+      At line 211 in file FonctionEtape2.asm
+
+Reset_SIN 000000E2
 
 Symbol: Reset_SIN
    Definitions
-      At line 142 in file FonctionEtape2.asm
-   Uses
-      At line 17 in file FonctionEtape2.asm
-      At line 80 in file FonctionEtape2.asm
-
-Set_SCLK 00000082
-
-Symbol: Set_SCLK
-   Definitions
-      At line 110 in file FonctionEtape2.asm
-   Uses
-      At line 14 in file FonctionEtape2.asm
-      At line 65 in file FonctionEtape2.asm
-      At line 88 in file FonctionEtape2.asm
-
-Set_SIN 000000A2
-
-Symbol: Set_SIN
-   Definitions
-      At line 131 in file FonctionEtape2.asm
-   Uses
-      At line 16 in file FonctionEtape2.asm
-      At line 84 in file FonctionEtape2.asm
-
-Tempo 000000C2
-
-Symbol: Tempo
-   Definitions
-      At line 155 in file FonctionEtape2.asm
+      At line 143 in file FonctionEtape2.asm
    Uses
       At line 18 in file FonctionEtape2.asm
-Comment: Tempo used once
-boucle 000000D4
+      At line 81 in file FonctionEtape2.asm
+      At line 193 in file FonctionEtape2.asm
 
-Symbol: boucle
-   Definitions
-      At line 164 in file FonctionEtape2.asm
-   Uses
-      At line 167 in file FonctionEtape2.asm
-Comment: boucle used once
-boucle_10N 000000C6
-
-Symbol: boucle_10N
-   Definitions
-      At line 158 in file FonctionEtape2.asm
-   Uses
-      At line 169 in file FonctionEtape2.asm
-Comment: boucle_10N used once
 
 
 
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Relocatable symbols
 
+Set_SCLK 000000B2
+
+Symbol: Set_SCLK
+   Definitions
+      At line 111 in file FonctionEtape2.asm
+   Uses
+      At line 15 in file FonctionEtape2.asm
+      At line 66 in file FonctionEtape2.asm
+      At line 89 in file FonctionEtape2.asm
+      At line 178 in file FonctionEtape2.asm
+      At line 201 in file FonctionEtape2.asm
+
+Set_SIN 000000D2
+
+Symbol: Set_SIN
+   Definitions
+      At line 132 in file FonctionEtape2.asm
+   Uses
+      At line 17 in file FonctionEtape2.asm
+      At line 85 in file FonctionEtape2.asm
+      At line 197 in file FonctionEtape2.asm
+
+Tempo 000000F2
+
+Symbol: Tempo
+   Definitions
+      At line 156 in file FonctionEtape2.asm
+   Uses
+      At line 19 in file FonctionEtape2.asm
+Comment: Tempo used once
+boucle 00000104
+
+Symbol: boucle
+   Definitions
+      At line 165 in file FonctionEtape2.asm
+   Uses
+      At line 168 in file FonctionEtape2.asm
+Comment: boucle used once
+boucle_10N 000000F6
+
+Symbol: boucle_10N
+   Definitions
+      At line 159 in file FonctionEtape2.asm
+   Uses
+      At line 170 in file FonctionEtape2.asm
+Comment: boucle_10N used once
 moncode 00000000
 
 Symbol: moncode
@@ -572,7 +694,7 @@ Symbol: moncode
    Uses
       None
 Comment: moncode unused
-15 symbols
+20 symbols
 
 
 
@@ -585,10 +707,10 @@ Symbol: GPIOBASEA
    Definitions
       At line 24 in file REG_UTILES.inc
    Uses
-      At line 112 in file FonctionEtape2.asm
-      At line 123 in file FonctionEtape2.asm
-      At line 133 in file FonctionEtape2.asm
-      At line 144 in file FonctionEtape2.asm
+      At line 113 in file FonctionEtape2.asm
+      At line 124 in file FonctionEtape2.asm
+      At line 134 in file FonctionEtape2.asm
+      At line 145 in file FonctionEtape2.asm
 
 GPIOBASEB 40010C00
 
@@ -604,7 +726,7 @@ Symbol: MILSEC
    Definitions
       At line 49 in file REG_UTILES.inc
    Uses
-      At line 166 in file FonctionEtape2.asm
+      At line 167 in file FonctionEtape2.asm
 Comment: MILSEC used once
 MaskBlank 00000004
 
@@ -698,10 +820,10 @@ Symbol: OffsetReset
    Definitions
       At line 30 in file REG_UTILES.inc
    Uses
-      At line 124 in file FonctionEtape2.asm
-      At line 126 in file FonctionEtape2.asm
-      At line 145 in file FonctionEtape2.asm
-      At line 147 in file FonctionEtape2.asm
+      At line 125 in file FonctionEtape2.asm
+      At line 127 in file FonctionEtape2.asm
+      At line 146 in file FonctionEtape2.asm
+      At line 148 in file FonctionEtape2.asm
 
 
 
@@ -715,10 +837,10 @@ Symbol: OffsetSet
    Definitions
       At line 29 in file REG_UTILES.inc
    Uses
-      At line 113 in file FonctionEtape2.asm
-      At line 115 in file FonctionEtape2.asm
-      At line 134 in file FonctionEtape2.asm
-      At line 136 in file FonctionEtape2.asm
+      At line 114 in file FonctionEtape2.asm
+      At line 116 in file FonctionEtape2.asm
+      At line 135 in file FonctionEtape2.asm
+      At line 137 in file FonctionEtape2.asm
 
 SCB_VTOR E000ED08
 
@@ -771,9 +893,10 @@ DataSend 00000000
 
 Symbol: DataSend
    Definitions
-      At line 19 in file FonctionEtape2.asm
+      At line 20 in file FonctionEtape2.asm
    Uses
-      At line 100 in file FonctionEtape2.asm
-Comment: DataSend used once
+      At line 101 in file FonctionEtape2.asm
+      At line 213 in file FonctionEtape2.asm
+
 1 symbol
-374 symbols in table
+379 symbols in table

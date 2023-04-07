@@ -11,6 +11,7 @@
 
 ;***************IMPORT/EXPORT**********************************************
 	EXPORT Driverglobal
+	EXPORT DriverReg
 	EXPORT Set_SCLK
 	EXPORT Reset_SCLK
 	EXPORT Set_SIN
@@ -170,10 +171,51 @@ boucle
 		ENDP
 
 		
+		
+		
+		
 DriverReg	PROC
-	
+				BL Set_SCLK	; Set(SCLK)
+				MOV R1, #1	; Initialisation du compteur de LED ? 1
+				
+BoucleLed2
+				MOV  R7 ,R0	; On load les valeur de la barette dans R7
+				LDRB R3, [R7, R1] ; R3 = ValCourante, On met la valeur de Barette[n] dans R3
+				LSL	R4, R3, #24	; (ValCourante) <- (ValCourante) << 24
+				
+				MOV R5, #0
+				
+BoucleBit2
+				BL Reset_SCLK
+				
+				TST R4, #(0x1<<31)				; Compare le bit de poid fort 32eme
+				BNE Bit2
+				BL Reset_SIN
+				B NextBit2
+				
+Bit2
+				BL Set_SIN
+				
+NextBit2
+				LSL	R4, R4, #1
+				BL Set_SCLK
+				
+				ADD R5, R5, #1 ; i++
+				CMP R5, #12
+				BNE BoucleBit2
+				
+				ADD R1, R1, #1
+				CMP R1, #48
+				BNE BoucleLed2
+				
+				BL Reset_SCLK
+				
+				LDR  R8 ,=DataSend	
+				MOV R9, #0
+				STRB R9, [R8]
+				
+				BX LR
 			
-	
 			ENDP
 
 

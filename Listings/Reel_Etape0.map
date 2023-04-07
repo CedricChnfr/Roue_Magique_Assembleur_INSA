@@ -4,10 +4,10 @@ Component: ARM Compiler 5.06 update 7 (build 960) Tool: armlink [4d3601]
 
 Section Cross References
 
-    principale.o(MesDonnees) refers (Special) to fonctionetape2.o(moncode) for Reset_SCLK
-    principale.o(moncode) refers (Special) to fonctionetape2.o(moncode) for Reset_SCLK
+    principale.o(MesDonnees) refers (Special) to fonctionetape2.o(moncode) for Driverglobal
+    principale.o(moncode) refers (Special) to fonctionetape2.o(moncode) for Driverglobal
     principale.o(moncode) refers to initialisation.o(i.Init_Cible) for Init_Cible
-    principale.o(mesdonnees) refers (Special) to fonctionetape2.o(moncode) for Reset_SCLK
+    principale.o(mesdonnees) refers (Special) to fonctionetape2.o(moncode) for Driverglobal
     fonctionetape2.o(moncode) refers to initialisation.o(.data) for DataSend
     startup_stm32f10x_cl.o(RESET) refers to startup_stm32f10x_cl.o(STACK) for __initial_sp
     startup_stm32f10x_cl.o(RESET) refers to startup_stm32f10x_cl.o(.text) for Reset_Handler
@@ -125,7 +125,7 @@ Removing Unused input sections from the image.
     Removing principale.o(mesdonnees), (0 bytes).
     Removing fonctionetape2.o(MesDonnees), (0 bytes).
     Removing lumiere.o(MesDonnees), (0 bytes).
-    Removing lumiere.o(moncode), (48 bytes).
+    Removing lumiere.o(moncode), (96 bytes).
     Removing startup_stm32f10x_cl.o(HEAP), (512 bytes).
     Removing system_stm32f10x_1.o(.rev16_text), (4 bytes).
     Removing system_stm32f10x_1.o(.revsh_text), (4 bytes).
@@ -160,7 +160,7 @@ Removing Unused input sections from the image.
     Removing timer_systick_1.o(.revsh_text), (4 bytes).
     Removing timer_systick_1.o(.rrx_text), (6 bytes).
 
-38 unused section(s) (total 1360 bytes) removed from the image.
+38 unused section(s) (total 1408 bytes) removed from the image.
 
 ==============================================================================
 
@@ -170,30 +170,30 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/d2f.c                  0x00000000   Number         0  d2f.o ABSOLUTE
     ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
-    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  fdiv.o ABSOLUTE
-    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
+    ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  ffixui.o ABSOLUTE
     ../fplib/microlib/fpflt.c                0x00000000   Number         0  ffltui.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  fmul.o ABSOLUTE
@@ -242,8 +242,8 @@ Image Symbol Table
     .text                                    0x08000488   Section       48  cdcmple.o(.text)
     .text                                    0x080004b8   Section       48  cdrcmple.o(.text)
     .text                                    0x080004e8   Section        0  d2f.o(.text)
-    .text                                    0x08000520   Section        0  fepilogue.o(.text)
     .text                                    0x08000520   Section        0  iusefp.o(.text)
+    .text                                    0x08000520   Section        0  fepilogue.o(.text)
     .text                                    0x0800058e   Section        0  depilogue.o(.text)
     .text                                    0x08000648   Section       36  init.o(.text)
     .text                                    0x0800066c   Section        0  llshl.o(.text)
@@ -275,10 +275,11 @@ Image Symbol Table
     i.__scatterload_copy                     0x080012b0   Section       14  handlers.o(i.__scatterload_copy)
     i.__scatterload_null                     0x080012be   Section        2  handlers.o(i.__scatterload_null)
     i.__scatterload_zeroinit                 0x080012c0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    moncode                                  0x080012d0   Section       62  principale.o(moncode)
-    moncode                                  0x08001310   Section      236  fonctionetape2.o(moncode)
-    Barrette1                                0x08001310   Data           0  fonctionetape2.o(moncode)
-    moncode                                  0x080013fc   Section      200  foncasm.o(moncode)
+    moncode                                  0x080012d0   Section      124  principale.o(moncode)
+    BarretteN                                0x08001300   Data           0  principale.o(moncode)
+    moncode                                  0x0800134c   Section      368  fonctionetape2.o(moncode)
+    Barrette1                                0x0800134c   Data           0  fonctionetape2.o(moncode)
+    moncode                                  0x080014bc   Section      200  foncasm.o(moncode)
     .data                                    0x20000000   Section       19  initialisation.o(.data)
     .data                                    0x20000014   Section       24  fonctiontimer.o(.data)
     incre                                    0x20000024   Data           4  fonctiontimer.o(.data)
@@ -422,17 +423,18 @@ Image Symbol Table
     __scatterload_copy                       0x080012b1   Thumb Code    14  handlers.o(i.__scatterload_copy)
     __scatterload_null                       0x080012bf   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x080012c1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    main                                     0x08001301   Thumb Code    14  principale.o(moncode)
-    Driverglobal                             0x08001341   Thumb Code    82  fonctionetape2.o(moncode)
-    Set_SCLK                                 0x08001393   Thumb Code    16  fonctionetape2.o(moncode)
-    Reset_SCLK                               0x080013a3   Thumb Code    16  fonctionetape2.o(moncode)
-    Set_SIN                                  0x080013b3   Thumb Code    16  fonctionetape2.o(moncode)
-    Reset_SIN                                0x080013c3   Thumb Code    16  fonctionetape2.o(moncode)
-    Tempo                                    0x080013d3   Thumb Code    30  fonctionetape2.o(moncode)
-    Envoie192Boucle                          0x080013fd   Thumb Code   108  foncasm.o(moncode)
-    Envoie96Dot                              0x08001469   Thumb Code    78  foncasm.o(moncode)
-    Region$$Table$$Base                      0x080014c4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080014e4   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08001331   Thumb Code    24  principale.o(moncode)
+    Driverglobal                             0x080013ad   Thumb Code    82  fonctionetape2.o(moncode)
+    Set_SCLK                                 0x080013ff   Thumb Code    16  fonctionetape2.o(moncode)
+    Reset_SCLK                               0x0800140f   Thumb Code    16  fonctionetape2.o(moncode)
+    Set_SIN                                  0x0800141f   Thumb Code    16  fonctionetape2.o(moncode)
+    Reset_SIN                                0x0800142f   Thumb Code    16  fonctionetape2.o(moncode)
+    Tempo                                    0x0800143f   Thumb Code    30  fonctionetape2.o(moncode)
+    DriverReg                                0x0800145d   Thumb Code    82  fonctionetape2.o(moncode)
+    Envoie192Boucle                          0x080014bd   Thumb Code   108  foncasm.o(moncode)
+    Envoie96Dot                              0x08001529   Thumb Code    78  foncasm.o(moncode)
+    Region$$Table$$Base                      0x08001584   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080015a4   Number         0  anon$$obj.o(Region$$Table)
     PrtSurImage                              0x20000000   Data           4  initialisation.o(.data)
     BarretEnCours                            0x20000004   Data           4  initialisation.o(.data)
     DataSend                                 0x20000008   Data           1  initialisation.o(.data)
@@ -453,9 +455,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000151
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001574, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001634, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000014e4, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000015a4, Max: 0x00040000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -515,22 +517,21 @@ Memory Map of the image
     0x080012be   0x080012be   0x00000002   Code   RO          500    i.__scatterload_null  mc_w.l(handlers.o)
     0x080012c0   0x080012c0   0x0000000e   Code   RO          501    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x080012ce   0x080012ce   0x00000002   PAD
-    0x080012d0   0x080012d0   0x0000003e   Code   RO            2    moncode             principale.o
-    0x0800130e   0x0800130e   0x00000002   PAD
-    0x08001310   0x08001310   0x000000ec   Code   RO           10    moncode             fonctionetape2.o
-    0x080013fc   0x080013fc   0x000000c8   Code   RO          339    moncode             Matos.lib(foncasm.o)
-    0x080014c4   0x080014c4   0x00000020   Data   RO          497    Region$$Table       anon$$obj.o
+    0x080012d0   0x080012d0   0x0000007c   Code   RO            2    moncode             principale.o
+    0x0800134c   0x0800134c   0x00000170   Code   RO           10    moncode             fonctionetape2.o
+    0x080014bc   0x080014bc   0x000000c8   Code   RO          339    moncode             Matos.lib(foncasm.o)
+    0x08001584   0x08001584   0x00000020   Data   RO          497    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080014e4, Size: 0x00000490, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080015a4, Size: 0x00000490, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080014e4   0x00000013   Data   RW          105    .data               Matos.lib(initialisation.o)
-    0x20000013   0x080014f7   0x00000001   PAD
-    0x20000014   0x080014f8   0x00000018   Data   RW          237    .data               Matos.lib(fonctiontimer.o)
-    0x2000002c   0x08001510   0x00000060   Data   RW          329    .data               Matos.lib(warning.o)
-    0x2000008c   0x08001570   0x00000004   Data   RW          415    .data               Matos.lib(timer_systick_1.o)
+    0x20000000   0x080015a4   0x00000013   Data   RW          105    .data               Matos.lib(initialisation.o)
+    0x20000013   0x080015b7   0x00000001   PAD
+    0x20000014   0x080015b8   0x00000018   Data   RW          237    .data               Matos.lib(fonctiontimer.o)
+    0x2000002c   0x080015d0   0x00000060   Data   RW          329    .data               Matos.lib(warning.o)
+    0x2000008c   0x08001630   0x00000004   Data   RW          415    .data               Matos.lib(timer_systick_1.o)
     0x20000090        -       0x00000400   Zero   RW           18    STACK               startup_stm32f10x_cl.o
 
 
@@ -541,15 +542,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       236         60          0          0          0        580   fonctionetape2.o
-        62         48          0          0          0        364   principale.o
+       368        110          0          0          0        640   fonctionetape2.o
+       124        100          0          0          0        364   principale.o
         36          8        336          0       1024        832   startup_stm32f10x_cl.o
        396         32          0          0          0       6601   system_stm32f10x_1.o
 
     ----------------------------------------------------------------------
-       732        148        368          0       1024       8377   Object Totals
+       924        250        368          0       1024       8437   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         2          0          0          0          0          0   (incl. Padding)
+         0          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -610,15 +611,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4980        490        368        144       1024     245944   Grand Totals
-      4980        490        368        144       1024     245944   ELF Image Totals
-      4980        490        368        144          0          0   ROM Totals
+      5172        592        368        144       1024     246004   Grand Totals
+      5172        592        368        144       1024     246004   ELF Image Totals
+      5172        592        368        144          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 5348 (   5.22kB)
+    Total RO  Size (Code + RO Data)                 5540 (   5.41kB)
     Total RW  Size (RW Data + ZI Data)              1168 (   1.14kB)
-    Total ROM Size (Code + RO Data + RW Data)       5492 (   5.36kB)
+    Total ROM Size (Code + RO Data + RW Data)       5684 (   5.55kB)
 
 ==============================================================================
 

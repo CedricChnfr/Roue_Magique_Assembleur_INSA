@@ -19,6 +19,7 @@
 
 	IMPORT Init_Cible
 	IMPORT Driverglobal
+	IMPORT DriverReg
 	IMPORT Set_SCLK
 	IMPORT Reset_SCLK
 	IMPORT Set_SIN
@@ -55,15 +56,15 @@ main  	PROC
 		MOV R0,#1
 		BL Init_Cible;			;Initialisation de la cible
 		
-		BL Driverglobal
+		;Tempo
+		MOV R0, #10
+		BL Tempo
 		
-		;LDR  R7 ,=Barrette1		
-		;BL Tempo
-				
-
-
 		
-					
+		;BL Driverglobal
+		
+		LDR R0, =BarretteN
+		BL DriverReg
 
 		
 		
