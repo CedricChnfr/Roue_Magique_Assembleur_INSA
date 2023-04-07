@@ -56,15 +56,15 @@ main  	PROC
 		MOV R0,#1
 		BL Init_Cible;			;Initialisation de la cible
 		
-		;Tempo
-		MOV R0, #10
-		BL Tempo
-		
+	
 		
 		;BL Driverglobal
-		
 		LDR R0, =BarretteN
 		BL DriverReg
+		
+		;Tempo
+		MOV R0, #500
+		BL Tempo
 
 		
 		
